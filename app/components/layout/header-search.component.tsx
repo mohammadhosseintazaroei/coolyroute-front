@@ -16,7 +16,7 @@ const HeaderSearch = () => {
   return (
     <>
       <div
-        className="relative h-full flex justify-start items-center w-10 sm:w-14"
+        className="relative h-full flex justify-start items-center w-10 sm:w-14 max-md:hidden"
         onClick={handleOpenModal}
       >
         <input
