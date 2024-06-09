@@ -5,7 +5,7 @@ import Modal from "../global/modal.component";
 import useMediaQuery from "@/app/hooks/useMediaQuery";
 const HeaderSearch = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { lg } = useMediaQuery({ query: 5454 });
+  const { lg, md, sm } = useMediaQuery({ query: 5454 });
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -33,12 +33,13 @@ const HeaderSearch = () => {
           <Search className="size-6 " />
         </label>
       </div>
-      {console.log("lg:", lg)}
-      <Modal
-        component={<div>fasdfsdfdasfsdfasdfdsfds</div>}
-        open={openModal}
-        handleClose={handleCloseModal}
-      />
+      {!lg && (
+        <Modal
+          component={<div>fasdfsdfdasfsdfasdfdsfds</div>}
+          open={openModal}
+          handleClose={handleCloseModal}
+        />
+      )}
     </>
   );
 };
