@@ -14,6 +14,10 @@ const config: Config = {
         light: "#12122F",
       },
       light: "#FFFFFF",
+      error: {
+        main: "#FF3F3F",
+        light: "#FF8080",
+      },
     },
   },
   plugins: [],

@@ -6,10 +6,10 @@ import React, { useEffect, useState } from "react";
 import { tv } from "tailwind-variants";
 const menuItems = [
   { text: "خانه", link: "/" },
-  { text: "رویداد ها", link: "/" },
-  { text: "درباره ما", link: "/" },
-  { text: "کامیونیتی ", link: "/" },
-  { text: "علاقه مندی ها", link: "/" },
+  { text: "رویداد ها", link: "/events" },
+  { text: "درباره ما", link: "/about" },
+  { text: "کامیونیتی ", link: "/community" },
+  { text: "علاقه مندی ها", classes: "text-error-light", link: "/favorits" },
 ];
 type Props = {};
 
@@ -59,7 +59,11 @@ const HeaderMenu = (props: Props) => {
         } `}
       >
         {menuItems.map((item, index) => (
-          <Link href={item.link} key={index} className={menuItem()}>
+          <Link
+            href={item.link}
+            key={index}
+            className={`${menuItem()} ${item.classes}`}
+          >
             {item.text}
           </Link>
         ))}
