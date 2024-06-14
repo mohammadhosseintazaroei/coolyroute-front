@@ -12,6 +12,7 @@ const config: Config = {
         DEFAULT: "#09091F",
         dark: "#040417",
         light: "#12122F",
+        lighter: "#292946",
       },
       light: "#FFFFFF",
       error: {
@@ -21,7 +22,7 @@ const config: Config = {
     },
     extend: {
       boxShadow: {
-        "button": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+        button: "0px 0px 13px 5px #00000050",
       },
     },
   },
