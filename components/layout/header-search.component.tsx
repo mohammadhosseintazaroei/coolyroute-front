@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { Search } from "react-feather";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import Modal from "../global/modal.component";
-import useMediaQuery from "@/app/hooks/useMediaQuery";
 const HeaderSearch = () => {
   const [openModal, setOpenModal] = useState(false);
   const { lg, md, sm } = useMediaQuery({ query: 5454 });

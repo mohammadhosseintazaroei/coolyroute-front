@@ -1,6 +1,6 @@
 "use client";
 
-import useMediaQuery from "@/app/hooks/useMediaQuery";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import Link from "next/link";
 import React, { MouseEvent, useEffect, useState } from "react";
 import { LogOut, User } from "react-feather";
@@ -45,14 +45,14 @@ const HeaderMenu = (props: Props) => {
       menuItem:
         "text-lg sm:text-base lg:text-lg transition-[border] duration-500 hover:border-b-2-[red]",
       userAccountButton:
-        "transition duration-200 rounded-full size-12 max-md:size-10 flex justify-center items-center relative  hover:shadow-button hover:bg-primary-lighter",
+        "transition duration-200 rounded-full size-12 max-md:size-10 flex justify-center items-center relative  hover:shadow-button bg-primary hover:bg-primary-light",
       userAccountTab:
         "transition-[background] duration-200 w-fit absolute top-full left-0 rounded-xl p-4 mt-3 flex flex-col items-start gap-2 transition duration-200",
       accountTabItem: "flex gap-3 whitespace-pre items-center max-md:text-sm",
       accountTabItemIcon: "max-md:size-5 ",
       userIcon: "size-7 max-md:size-6",
       registerLoginButton:
-        "py-3 px-6 bg-primary-lighter rounded-xl text-lg font-bold",
+        "py-3 px-6 bg-primary-light rounded-xl text-lg font-normal",
     },
   });
   const styles = headerMenu();
