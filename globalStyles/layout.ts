@@ -2,7 +2,7 @@ import { tv } from "tailwind-variants";
 
 const container = tv(
   {
-    base: "grid grid-cols-1 gap-4 text-white text-center  leading-6",
+    base: "grid gap-4 text-white text-center leading-6 ",
     variants: {
       column: {
         col1: "grid-cols-1",

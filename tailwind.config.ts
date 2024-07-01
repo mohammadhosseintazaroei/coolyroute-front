@@ -1,11 +1,12 @@
+import { withTV } from "tailwind-variants/dist/transformer.js";
 import type { Config } from "tailwindcss";
-const { withTV } = require("tailwind-variants/transformer");
 
 /** @type {import('tailwindcss').Config} */
 const config: Config = withTV({
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./globalStyles/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -23,8 +24,12 @@ const config: Config = withTV({
         },
         light: "#FFFFFF",
         error: {
-          main: "#FF3F3F",
+          DEFAULT: "#FF3F3F",
           light: "#FF8080",
+        },
+        success: {
+          DEFAULT: "#395B32",
+          light: "#61735D",
         },
         neutral: {
           DEFAULT: "#929292",

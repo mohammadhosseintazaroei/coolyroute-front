@@ -11,8 +11,21 @@ export const metadata: Metadata = {
 
 interface Props {}
 
+const events = [
+  {
+    title: "salam",
+    description:
+      "توضیحات رویداد برای مثال تاریخ و زمان و موضوعاتی که قراره پوشش داده شه داخخل این رویداد...",
+  },
+  {
+    title: "salam",
+    description:
+      "توضیحات رویداد برای مثال تاریخ و زمان و موضوعاتی که قراره پوشش داده شه داخخل این رویداد...",
+  },
+];
+
 const EventsPage = (props: Props) => {
-  return <Events />;
+  return <Events events={events} />;
 };
 
 export default EventsPage;
