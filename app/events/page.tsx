@@ -1,8 +1,9 @@
 import { tv } from "tailwind-variants";
 import { container } from "../../globalStyles/layout";
-import Events, { GET_ALL_EVENTS } from "@/components/events/events.compnent";
+import Events from "@/components/events/events.compnent";
 import { Metadata } from "next";
 import { getClient } from "@/lib/appolo-client";
+import { GET_ALL_EVENTS } from "@/apis/event.api";
 
 export const metadata: Metadata = {
   title: "رویداد ها",
@@ -31,7 +32,7 @@ const EventsPage = async (props: Props) => {
     fetchPolicy: "cache-first",
     context: {
       fetchOptions: {
-        next: { revalidate: 3600 },
+        next: { revalidate: 1 },
       },
     },
   });

@@ -7,15 +7,7 @@ import { gql, useQuery } from "@apollo/client";
 interface Props {
   events: any;
 }
-export const GET_ALL_EVENTS = gql(`
-query getAllEvents{
-  getAllEvents {
-    id
-    title
-    description
-  }
-}
-`);
+
 export default async function Page(props: Props) {
   return (
     <div
