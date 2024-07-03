@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import Navbar from "@/components/layout/navbar";
-import AppoloProvider from "@/components/providers/share/appolo-config";
+import { ApolloWrapper } from "@/components/providers/appolo-client-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -33,7 +33,7 @@ export default function RootLayout({
       <body className={`${yekanFont.className} bg-primary text-light`}>
         <Navbar />
         <div className="flex justify-center">
-          <AppoloProvider>{children}</AppoloProvider>
+          <ApolloWrapper>{children}</ApolloWrapper>
         </div>
       </body>
     </html>
