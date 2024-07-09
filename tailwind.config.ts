@@ -45,27 +45,6 @@ module.exports = withTV({
         button: "0px 0px 13px 5px #00000050",
         card: "0px 0px 13px 5px #00000050",
       },
-      colors: {
-        primary: {
-          DEFAULT: "#09091F",
-          dark: "#040417",
-          light: "#12122F",
-          lighter: "#1D1D3D",
-        },
-        light: "#FFFFFF",
-        error: {
-          DEFAULT: "#FF3F3F",
-          light: "#FF8080",
-        },
-        success: {
-          DEFAULT: "#395B32",
-          light: "#61735D",
-        },
-        neutral: {
-          DEFAULT: "#929292",
-          light: "#C1C1C1",
-        },
-      },
     },
   },
   plugins: [
