@@ -31,14 +31,14 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <Providers>
-        <body className={`${yekanFont.className} `}>
+      <body className={`${yekanFont.className} `}>
+        <Providers>
           <main className=" main bg-primary  text-neutral-lighter ">
             <Navbar />
             <div className="flex justify-center">{children}</div>
           </main>
-        </body>
-      </Providers>
+        </Providers>
+      </body>
     </html>
   );
 }
