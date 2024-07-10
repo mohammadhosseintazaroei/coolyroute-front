@@ -37,11 +37,9 @@ const LoginBoxLayout = (props: Props) => {
             </button>
           )}
 
-          <h1 className={styles.formTitle()}>ثبت‌نام/ورود به حساب کاربری</h1>
+          <h1 className={styles.formTitle()}>{props.title}</h1>
         </div>
-        <span className={styles.headerDescription()}>
-          برای ورود به حساب کاربری خود شماره خود را وارد کنید.
-        </span>
+        <span className={styles.headerDescription()}>{props.description}</span>
       </div>
       {props.children}
     </div>

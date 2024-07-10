@@ -1,13 +1,14 @@
 "use client";
-import { LOGIN } from "@/apis/signup.api";
-import { LoginStates } from "@/interfaces/signup.interface";
+import { LOGIN, VERIFICATION_CODE } from "@/apis/signup.api";
+import { LoginStates, LoginSteps } from "@/interfaces/signup.interface";
 import { useLazyQuery } from "@apollo/client";
-import React, { useState } from "react";
-import { AlertCircle, Phone } from "react-feather";
+import React, { useContext, useState } from "react";
+import { AlertCircle, Code, Hash, Phone } from "react-feather";
 import toast from "react-hot-toast";
 import { tv } from "tailwind-variants";
 import { CrButton } from "../global/cr-button/cr-button.component";
 import { CrTextField } from "../global/cr-text-fields/cr-text-field.compnent";
+import { GeneralDataContext } from "../providers/general-data-provider";
 
 interface Props {
   setActiveLoginState: React.Dispatch<React.SetStateAction<LoginStates>>;
@@ -19,23 +20,20 @@ const loginStyles = tv({
   },
 });
 const styles = loginStyles();
-const EnterMobile = (props: Props) => {
-  const [phoneNumber, setPhoneNumber] = useState<string>();
-  const [callLogin, { data, loading }] = useLazyQuery(LOGIN, {
-    onCompleted: () => {
-      toast("کد فرستاده شده را وارد کنید", {
-        icon: <AlertCircle />,
-      });
-      props.setActiveLoginState(LoginStates.EnterOtp);
-    },
-    onError: (error) => {
-      toast.error(error.message);
+const EnterOtp = (props: Props) => {
+  const [otp, setOtp] = useState<string>();
+  const { setToken } = useContext(GeneralDataContext);
+
+  const [callLogin, { data, loading }] = useLazyQuery(VERIFICATION_CODE, {
+    onCompleted: (data) => {
+      props.setActiveLoginState(LoginStates.FurtherInformation);
+      setToken({ access_token: data.verifyOtp.access_token! });
     },
     fetchPolicy: "no-cache",
   });
 
   const handleChangePhoneNumber = (value: string) => {
-    setPhoneNumber(value);
+    setOtp(value);
   };
   const handleSubmitPhoneNumber: React.FormEventHandler<HTMLFormElement> = (
     e
@@ -43,10 +41,10 @@ const EnterMobile = (props: Props) => {
     e.preventDefault();
     callLogin({
       variables: {
-        phoneNumber: phoneNumber!,
+        phoneNumber: localStorage.getItem("phoneNumber")!,
+        code: otp!,
       },
     });
-    localStorage.setItem("phoneNumber", phoneNumber!);
   };
   return (
     <form
@@ -55,11 +53,10 @@ const EnterMobile = (props: Props) => {
     >
       <CrTextField
         type="text"
-        label="شماره تلفن"
-        placeholder="شماره تلفن خود را وارد کنید"
-        startContent={<Phone size={14} />}
-        color="primary"
+        startContent={<Hash size={14} />}
         radius="sm"
+        color="primary"
+        isLtr
         onValueChange={handleChangePhoneNumber}
       />
       <CrButton
@@ -74,4 +71,4 @@ const EnterMobile = (props: Props) => {
     </form>
   );
 };
-export default EnterMobile;
+export default EnterOtp;
