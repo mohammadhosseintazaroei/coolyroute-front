@@ -3,7 +3,7 @@ import { UserModelSafe } from "@/__generated__/graphql";
 import { CHECK_AUTH } from "@/apis/signup.api";
 import { USER_PROFILE } from "@/apis/user.api";
 import { useLazyQuery, useQuery } from "@apollo/client";
-import * as React from "react";
+import { createContext, useCallback, useState } from "react";
 
 type Token = { access_token: string };
 
@@ -30,7 +30,7 @@ type GeneralDataContextValue = {
   deleteToken: () => void;
 } & (LoggedInData | AuthLoading);
 
-export const GeneralDataContext = React.createContext<GeneralDataContextValue>({
+export const GeneralDataContext = createContext<GeneralDataContextValue>({
   isLoading: true,
   setToken: () => {},
   deleteToken: () => {},
@@ -43,6 +43,7 @@ interface GeneralDataWrapperProps {
 export const GeneralDataWrapper: React.FC<GeneralDataWrapperProps> = ({
   children,
 }) => {
+  const [userInfo, setUserInfo] = useState<UserModelSafe | null>();
   //   const checkTokenValidity = async () => {
   //     try {
   //       await axiosInstance.get("/user/check/auth");
@@ -51,9 +52,17 @@ export const GeneralDataWrapper: React.FC<GeneralDataWrapperProps> = ({
   //       return false;
   //     }
   //   };
-  const [callUserProfile, { data, refetch, loading }] =
-    useLazyQuery(USER_PROFILE);
-  useQuery(CHECK_AUTH, {
+  const [callUserProfile, { data, refetch, loading: profileLoading }] =
+    useLazyQuery(USER_PROFILE, {
+      fetchPolicy: "network-only",
+      onCompleted: (data) => {
+        setUserInfo(data.userProfile);
+      },
+      onError: () => {
+        setUserInfo(null);
+      },
+    });
+  const { loading: checkAuthLoading } = useQuery(CHECK_AUTH, {
     onCompleted: () => {
       callUserProfile();
     },
@@ -79,27 +88,26 @@ export const GeneralDataWrapper: React.FC<GeneralDataWrapperProps> = ({
   //     return user;
   //   });
 
-  const setToken = React.useCallback(
+  const setToken = useCallback(
     (newToken: Token) => {
       localStorage.setItem("token", newToken.access_token);
       refetch();
     },
     [refetch]
   );
-  const deleteToken = React.useCallback(() => {
+  const deleteToken = useCallback(() => {
     localStorage.removeItem("token");
     refetch();
   }, [refetch]);
-
   return (
     <GeneralDataContext.Provider
       value={
         {
-          userInfo: data?.userProfile,
-          isLoading: loading,
+          userInfo,
+          isLoading: profileLoading || checkAuthLoading,
           setToken,
           deleteToken,
-          isLoggedIn: !!data,
+          isLoggedIn: !!userInfo,
         } as GeneralDataContextValue
       }
     >

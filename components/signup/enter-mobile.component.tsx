@@ -30,6 +30,7 @@ const EnterMobile = (props: Props) => {
     },
     onError: (error) => {
       toast.error(error.message);
+      props.setActiveLoginState(LoginStates.EnterOtp);
     },
     fetchPolicy: "no-cache",
   });

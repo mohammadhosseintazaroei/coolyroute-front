@@ -2,9 +2,10 @@
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Link from "next/link";
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useContext, useEffect, useState } from "react";
 import { LogOut, User } from "react-feather";
 import { tv } from "tailwind-variants";
+import { GeneralDataContext } from "../providers/general-data-provider";
 const menuItems = [
   { text: "خانه", link: "/" },
   { text: "رویداد ها", link: "/events" },
@@ -17,6 +18,7 @@ type Props = {};
 const HeaderMenu = (props: Props) => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [openUserAccountTab, setOpenUserAccountTab] = useState(false);
+  const { deleteToken } = useContext(GeneralDataContext);
 
   const handleClick = () => {
     setOpenMobileMenu(!openMobileMenu);
@@ -113,10 +115,10 @@ const HeaderMenu = (props: Props) => {
             <User className={styles.accountTabItemIcon()} />
             حساب کاربری
           </Link>
-          <Link href="signout" className={styles.accountTabItem()}>
+          <button onClick={deleteToken} className={styles.accountTabItem()}>
             <LogOut className={styles.accountTabItemIcon()} />
             خروج
-          </Link>
+          </button>
         </div>
       </button>
     </>
