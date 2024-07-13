@@ -115,10 +115,10 @@ const HeaderMenu = (props: Props) => {
             <User className={styles.accountTabItemIcon()} />
             حساب کاربری
           </Link>
-          <button onClick={deleteToken} className={styles.accountTabItem()}>
+          <div onClick={deleteToken} className={styles.accountTabItem()}>
             <LogOut className={styles.accountTabItemIcon()} />
             خروج
-          </button>
+          </div>
         </div>
       </button>
     </>

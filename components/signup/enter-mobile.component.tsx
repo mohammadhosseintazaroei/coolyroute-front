@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { tv } from "tailwind-variants";
 import { CrButton } from "../global/cr-button/cr-button.component";
 import { CrTextField } from "../global/cr-text-fields/cr-text-field.compnent";
+import { validatePhoneNumber } from "@/utils/validate";
 
 interface Props {
   setActiveLoginState: React.Dispatch<React.SetStateAction<LoginStates>>;
@@ -20,17 +21,18 @@ const loginStyles = tv({
 });
 const styles = loginStyles();
 const EnterMobile = (props: Props) => {
-  const [phoneNumber, setPhoneNumber] = useState<string>();
+  const savedPhoneNumber: string = localStorage.getItem("phoneNumber")!;
+  const [phoneNumber, setPhoneNumber] = useState<string>(savedPhoneNumber);
+  const goToEnterOtp = () => props.setActiveLoginState(LoginStates.EnterOtp);
   const [callLogin, { data, loading }] = useLazyQuery(LOGIN, {
     onCompleted: () => {
-      toast("کد فرستاده شده را وارد کنید", {
+      toast(data?.login.message!, {
         icon: <AlertCircle />,
       });
-      props.setActiveLoginState(LoginStates.EnterOtp);
+      goToEnterOtp();
     },
     onError: (error) => {
       toast.error(error.message);
-      props.setActiveLoginState(LoginStates.EnterOtp);
     },
     fetchPolicy: "no-cache",
   });
@@ -42,13 +44,21 @@ const EnterMobile = (props: Props) => {
     e
   ) => {
     e.preventDefault();
-    callLogin({
-      variables: {
-        phoneNumber: phoneNumber!,
-      },
-    });
-    localStorage.setItem("phoneNumber", phoneNumber!);
+    if (isPhoneNumberValid) {
+      if (phoneNumber !== savedPhoneNumber) {
+        callLogin({
+          variables: {
+            phoneNumber: phoneNumber!,
+          },
+        });
+        localStorage.setItem("phoneNumber", phoneNumber!);
+      } else {
+        goToEnterOtp();
+      }
+    }
   };
+  const isPhoneNumberValid = validatePhoneNumber(phoneNumber!);
+  console.log(isPhoneNumberValid);
   return (
     <form
       onSubmit={handleSubmitPhoneNumber}
@@ -62,6 +72,10 @@ const EnterMobile = (props: Props) => {
         color="primary"
         radius="sm"
         onValueChange={handleChangePhoneNumber}
+        required
+        value={phoneNumber}
+        isInvalid={!!phoneNumber && !isPhoneNumberValid}
+        errorMessage="شماره تلفن را به درستی وارد کنید"
       />
       <CrButton
         color="light"

@@ -9,16 +9,15 @@ import {
 export const CrButton = extendVariants(Button, {
   variants: {
     color: {
-      light: "border-light",
+      light: "border-light ",
+      success: "text-light",
+    },
+    variant: {
+      bordered: "border-x border-y",
     },
   },
   defaultVariants: {
     radius: "md",
     color: "primary",
   },
-  compoundVariants: [
-    {
-      class: "border-x",
-    },
-  ],
 });
