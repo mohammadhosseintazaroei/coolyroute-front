@@ -7,7 +7,7 @@ import { AlertCircle, Phone } from "react-feather";
 import toast from "react-hot-toast";
 import { tv } from "tailwind-variants";
 import { CrButton } from "../global/cr-button/cr-button.component";
-import { CrTextField } from "../global/cr-text-fields/cr-text-field.compnent";
+import { CrTextField } from "../global/cr-fields/cr-text-field.compnent";
 import { validatePhoneNumber } from "@/utils/validate";
 
 interface Props {
@@ -45,16 +45,12 @@ const EnterMobile = (props: Props) => {
   ) => {
     e.preventDefault();
     if (isPhoneNumberValid) {
-      if (phoneNumber !== savedPhoneNumber) {
-        callLogin({
-          variables: {
-            phoneNumber: phoneNumber!,
-          },
-        });
-        localStorage.setItem("phoneNumber", phoneNumber!);
-      } else {
-        goToEnterOtp();
-      }
+      callLogin({
+        variables: {
+          phoneNumber: phoneNumber!,
+        },
+      });
+      localStorage.setItem("phoneNumber", phoneNumber!);
     }
   };
   const isPhoneNumberValid = validatePhoneNumber(phoneNumber!);

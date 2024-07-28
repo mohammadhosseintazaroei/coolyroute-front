@@ -11,6 +11,7 @@ export const LOGIN = gql(`
     login(user: { phoneNumber: $phoneNumber }) {
       status
       message
+      remainingSeconds
     }
   }
 `);

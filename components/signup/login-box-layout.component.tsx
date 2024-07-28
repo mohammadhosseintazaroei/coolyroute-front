@@ -1,7 +1,6 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { ChevronRight } from "react-feather";
-import CrTextField from "../global/cr-text-fields/cr-text-field.compnent";
 import { tv } from "tailwind-variants";
 
 const loginStyles = tv({

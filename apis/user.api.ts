@@ -8,6 +8,7 @@ export const USER_PROFILE = gql(`
         lastName
     phoneNumber
     email
+    isComplete
     }
   }
 `);

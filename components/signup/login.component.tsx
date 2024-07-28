@@ -15,19 +15,21 @@ const loginSteps: LoginSteps[] = [
     state: LoginStates.FurtherInformation,
   },
 ];
-const Signup = () => {
+const Login = () => {
   const router = useRouter();
   const [activeLoginState, setActiveLoginState] = useState<LoginStates>(
     LoginStates.Login
   );
 
-  const { isLoggedIn, isLoading } = useContext(GeneralDataContext);
+  const { isLoggedIn, isLoading, userInfo } = useContext(GeneralDataContext);
 
   if (isLoading) {
     return <>loading...</>;
   }
-  if (isLoggedIn) {
+  if (isLoggedIn && userInfo.isComplete) {
     router.push("/");
+  } else if (isLoggedIn && !userInfo.isComplete) {
+    router.push("/profile/further-information");
   }
   const returnActiveLoginView = () => {
     switch (activeLoginState) {
@@ -52,18 +54,6 @@ const Signup = () => {
           </LoginBoxLayout>
         );
 
-      case LoginStates.FurtherInformation:
-        return (
-          <LoginBoxLayout
-            title="اطلاعات زیر رو پر کن تا به همه خدمات سایت دسترسی پیدا کنی !"
-            description="برای ورود به حساب کاربری خود شماره خود را وارد کنید."
-            disableBackButton
-          >
-            {/* <FurtherInformation setActiveLoginState={setActiveLoginState} /> */}
-            <>DFAS</>
-          </LoginBoxLayout>
-        );
-
       default:
         return (
           <LoginBoxLayout
@@ -71,7 +61,7 @@ const Signup = () => {
             description="برای ورود به حساب کاربری خود شماره خود را وارد کنید."
             disableBackButton
           >
-            <EnterMobile />
+            <EnterMobile setActiveLoginState={setActiveLoginState} />
           </LoginBoxLayout>
         );
     }
@@ -80,4 +70,4 @@ const Signup = () => {
   return returnActiveLoginView();
 };
 
-export default Signup;
+export default Login;

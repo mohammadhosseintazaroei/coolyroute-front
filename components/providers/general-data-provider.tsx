@@ -99,6 +99,7 @@ export const GeneralDataWrapper: React.FC<GeneralDataWrapperProps> = ({
     localStorage.removeItem("token");
     refetch();
   }, [refetch]);
+  console.log(userInfo);
   return (
     <GeneralDataContext.Provider
       value={

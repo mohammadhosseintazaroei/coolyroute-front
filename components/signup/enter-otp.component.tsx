@@ -7,8 +7,9 @@ import { AlertCircle, Code, Hash, Phone } from "react-feather";
 import toast from "react-hot-toast";
 import { tv } from "tailwind-variants";
 import { CrButton } from "../global/cr-button/cr-button.component";
-import { CrTextField } from "../global/cr-text-fields/cr-text-field.compnent";
+import { CrTextField } from "../global/cr-fields/cr-text-field.compnent";
 import { GeneralDataContext } from "../providers/general-data-provider";
+import { useRouter } from "next/navigation";
 
 interface Props {
   setActiveLoginState: React.Dispatch<React.SetStateAction<LoginStates>>;
@@ -24,14 +25,24 @@ const styles = loginStyles();
 const EnterOtp = (props: Props) => {
   const [otp, setOtp] = useState<string>();
   const { setToken } = useContext(GeneralDataContext);
+  const [timeRemaining, setTimeRemaining] = React.useState<number>(120);
+  React.useEffect(() => {
+    if (timeRemaining > 0) {
+      setTimeout(() => {
+        setTimeRemaining(timeRemaining - 1);
+      }, 1000);
+    }
+  }, [timeRemaining]);
+
+  const router = useRouter();
   const phoneNumber: string = localStorage.getItem("phoneNumber")!;
+
   const [callLogin, { data, loading }] = useLazyQuery(VERIFICATION_CODE, {
     onCompleted: (data) => {
-      props.setActiveLoginState(LoginStates.FurtherInformation);
       setToken({ access_token: data.verifyOtp.access_token! });
       localStorage.removeItem("phoneNumber");
     },
-    fetchPolicy: "no-cache",
+    fetchPolicy: "network-only",
   });
 
   const handleChangePhoneNumber = (value: string) => {
@@ -82,7 +93,6 @@ const EnterOtp = (props: Props) => {
           onClick={handleEditNumberClick}
           type="submit"
           fullWidth
-          isLoading={loading}
         >
           ویرایش شماره
         </CrButton>

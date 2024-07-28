@@ -18,7 +18,7 @@ type Props = {};
 const HeaderMenu = (props: Props) => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [openUserAccountTab, setOpenUserAccountTab] = useState(false);
-  const { deleteToken } = useContext(GeneralDataContext);
+  const { deleteToken, isLoggedIn } = useContext(GeneralDataContext);
 
   const handleClick = () => {
     setOpenMobileMenu(!openMobileMenu);
@@ -39,11 +39,11 @@ const HeaderMenu = (props: Props) => {
   const headerMenu = tv({
     slots: {
       hamburgerMenuButton:
-        "flex flex-col justify-center items-center md:hidden z-10",
+        "flex flex-col justify-center items-center md:hidden z-[111]",
       hamburgerMenuItem:
         "bg-light  block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ",
       mainMenuWrapper:
-        "h-full flex flex-col md:flex-row gap-10 md:gap-14 top-0 right-0 max-md:absolute max-md:bg-primary-light max-md:w-full max-md:flex-col p-6 transition-[right] duration-300",
+        "h-full flex flex-col md:flex-row gap-10 md:gap-14 top-0 right-0 max-md:absolute max-md:bg-primary-light max-md:w-full max-md:flex-col p-6 transition-[right] duration-300 z-[110]",
       menuItem:
         "text-lg sm:text-base lg:text-lg transition-[border] duration-500 hover:border-b-2-[red]",
       userAccountButton:
@@ -54,7 +54,7 @@ const HeaderMenu = (props: Props) => {
       accountTabItemIcon: "max-md:size-5 ",
       userIcon: "size-7 max-md:size-6",
       registerLoginButton:
-        "py-3 px-6 bg-primary-light rounded-xl text-lg font-normal",
+        "flex items-center h-10 md:h-12 text-md md:text-lg max-md:h-10 px-6 bg-primary-light rounded-xl text-md font-normal",
     },
   });
   const styles = headerMenu();
@@ -92,35 +92,39 @@ const HeaderMenu = (props: Props) => {
           </Link>
         ))}
       </nav>
-      <Link className={styles.registerLoginButton()} href="signup">
-        ورود / ثبت‌نام
-      </Link>
-      <button
-        className={` ${
-          openMobileMenu ? "bg-primary" : "bg-primary-light"
-        } ${styles.userAccountButton()}`}
-        onClick={handleToggleAccountTab}
-        // onBlur={handleCloseAccountTab}
-      >
-        <User className={styles.userIcon()} />
-        <div
-          className={`${styles.userAccountTab()} ${
-            openUserAccountTab
-              ? "opacity-100 scale-100 "
-              : "opacity-0 scale-50 "
-          } ${openMobileMenu ? "bg-primary" : "bg-primary-light"}`}
-          onClick={handleOpenAccountTab}
+      {console.log(isLoggedIn)}
+      {isLoggedIn ? (
+        <button
+          className={` ${
+            openMobileMenu ? "bg-primary" : "bg-primary-light"
+          } ${styles.userAccountButton()}`}
+          onClick={handleToggleAccountTab}
+          // onBlur={handleCloseAccountTab}
         >
-          <Link href="profile" className={styles.accountTabItem()}>
-            <User className={styles.accountTabItemIcon()} />
-            حساب کاربری
-          </Link>
-          <div onClick={deleteToken} className={styles.accountTabItem()}>
-            <LogOut className={styles.accountTabItemIcon()} />
-            خروج
+          <User className={styles.userIcon()} />
+          <div
+            className={`${styles.userAccountTab()} ${
+              openUserAccountTab
+                ? "opacity-100 scale-100 "
+                : "opacity-0 scale-50 "
+            } ${openMobileMenu ? "bg-primary" : "bg-primary-light"}`}
+            onClick={handleOpenAccountTab}
+          >
+            <Link href="profile" className={styles.accountTabItem()}>
+              <User className={styles.accountTabItemIcon()} />
+              حساب کاربری
+            </Link>
+            <div onClick={deleteToken} className={styles.accountTabItem()}>
+              <LogOut className={styles.accountTabItemIcon()} />
+              خروج
+            </div>
           </div>
-        </div>
-      </button>
+        </button>
+      ) : (
+        <Link className={styles.registerLoginButton()} href="/login">
+          ورود / ثبت‌نام
+        </Link>
+      )}
     </>
   );
 };
