@@ -25,7 +25,9 @@ const styles = loginStyles();
 const EnterOtp = (props: Props) => {
   const [otp, setOtp] = useState<string>();
   const { setToken } = useContext(GeneralDataContext);
-  const [timeRemaining, setTimeRemaining] = React.useState<number>(120);
+  const [timeRemaining, setTimeRemaining] = React.useState<number>(
+    Number(localStorage.getItem("remainingSeconds")) || 120
+  );
   React.useEffect(() => {
     if (timeRemaining > 0) {
       setTimeout(() => {
@@ -76,6 +78,7 @@ const EnterOtp = (props: Props) => {
         required
         onValueChange={handleChangePhoneNumber}
       />
+      <div>{timeRemaining}</div>
       <div className={styles.buttonContainer()}>
         <CrButton
           color="success"

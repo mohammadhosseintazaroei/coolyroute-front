@@ -30,6 +30,10 @@ const EnterMobile = (props: Props) => {
         icon: <AlertCircle />,
       });
       goToEnterOtp();
+      localStorage.setItem(
+        "remainingSeconds",
+        `${data?.login.remainingSeconds!}`
+      );
     },
     onError: (error) => {
       toast.error(error.message);
