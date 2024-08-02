@@ -1,12 +1,12 @@
 "use client";
 
 import { LoginStates, LoginSteps } from "@/interfaces/signup.interface";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
-import LoginBoxLayout from "./login-box-layout.component";
+import { GeneralDataContext } from "../providers/general-data-provider";
 import EnterMobile from "./enter-mobile.component";
 import EnterOtp from "./enter-otp.component";
-import { GeneralDataContext } from "../providers/general-data-provider";
-import { useRouter } from "next/navigation";
+import LoginBoxLayout from "./login-box-layout.component";
 
 const loginSteps: LoginSteps[] = [
   {
@@ -40,7 +40,9 @@ const Login = () => {
             description="برای ورود به حساب کاربری خود شماره خود را وارد کنید."
             disableBackButton
           >
-            <EnterMobile setActiveLoginState={setActiveLoginState} />
+            <EnterMobile
+              setActiveLoginState={setActiveLoginState}
+            />
           </LoginBoxLayout>
         );
       case LoginStates.EnterOtp:

@@ -1,5 +1,5 @@
 "use client";
-import { LOGIN, VERIFICATION_CODE } from "@/apis/signup.api";
+import { LOGIN, RENEW_OTP, VERIFICATION_CODE } from "@/apis/signup.api";
 import { LoginStates, LoginSteps } from "@/interfaces/signup.interface";
 import { useLazyQuery } from "@apollo/client";
 import React, { useContext, useState } from "react";
@@ -19,6 +19,9 @@ const loginStyles = tv({
     formInputsWrapper: "flex flex-col  gap-7",
     mobileInput: "bg-primary-lighter",
     buttonContainer: "flex w-full gap-7",
+    resendOtp: "text-lg bold pointer text-[#99BCFF] cursor-pointer",
+    timeRemainingMessage: "text-lg bold  text-nutral-lighter",
+    resendWrapper: "flex justify-center",
   },
 });
 const styles = loginStyles();
@@ -39,12 +42,26 @@ const EnterOtp = (props: Props) => {
   const router = useRouter();
   const phoneNumber: string = localStorage.getItem("phoneNumber")!;
 
-  const [callLogin, { data, loading }] = useLazyQuery(VERIFICATION_CODE, {
+  const [callVerifyCode, { data, loading }] = useLazyQuery(VERIFICATION_CODE, {
     onCompleted: (data) => {
       setToken({ access_token: data.verifyOtp.access_token! });
       localStorage.removeItem("phoneNumber");
     },
     fetchPolicy: "network-only",
+  });
+  const [callRenewOtp, { loading: renewOtpLoading }] = useLazyQuery(LOGIN, {
+    onCompleted: (data) => {
+      toast(data?.login.message!, {
+        icon: <AlertCircle />,
+      });
+      data.login.remainingSeconds
+        ? setTimeRemaining(data.login.remainingSeconds)
+        : setTimeRemaining(120);
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    fetchPolicy: "no-cache",
   });
 
   const handleChangePhoneNumber = (value: string) => {
@@ -54,7 +71,7 @@ const EnterOtp = (props: Props) => {
     e
   ) => {
     e.preventDefault();
-    callLogin({
+    callVerifyCode({
       variables: {
         phoneNumber,
         code: otp!,
@@ -63,6 +80,13 @@ const EnterOtp = (props: Props) => {
   };
   const handleEditNumberClick = () => {
     props.setActiveLoginState(LoginStates.Login);
+  };
+  const handleRenewOtpClick = () => {
+    callRenewOtp({
+      variables: {
+        phoneNumber: phoneNumber,
+      },
+    });
   };
   return (
     <form
@@ -78,7 +102,18 @@ const EnterOtp = (props: Props) => {
         required
         onValueChange={handleChangePhoneNumber}
       />
-      <div>{timeRemaining}</div>
+
+      <div className={styles.resendWrapper()}>
+        {timeRemaining > 0 ? (
+          <div className={styles.timeRemainingMessage()}>
+            ارسال مجدد کد تا {timeRemaining} ثانیه دیگر
+          </div>
+        ) : (
+          <span className={styles.resendOtp()} onClick={handleRenewOtpClick}>
+            ارسال مجدد کد
+          </span>
+        )}
+      </div>
       <div className={styles.buttonContainer()}>
         <CrButton
           color="success"

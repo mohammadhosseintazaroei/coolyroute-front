@@ -1,6 +1,7 @@
 "use client";
 import { LOGIN } from "@/apis/signup.api";
 import { LoginStates } from "@/interfaces/signup.interface";
+import { validatePhoneNumber } from "@/utils/validate";
 import { useLazyQuery } from "@apollo/client";
 import React, { useState } from "react";
 import { AlertCircle, Phone } from "react-feather";
@@ -8,7 +9,6 @@ import toast from "react-hot-toast";
 import { tv } from "tailwind-variants";
 import { CrButton } from "../global/cr-button/cr-button.component";
 import { CrTextField } from "../global/cr-fields/cr-text-field.compnent";
-import { validatePhoneNumber } from "@/utils/validate";
 
 interface Props {
   setActiveLoginState: React.Dispatch<React.SetStateAction<LoginStates>>;
