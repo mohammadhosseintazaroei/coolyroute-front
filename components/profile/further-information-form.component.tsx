@@ -22,6 +22,7 @@ import {
 } from "@/__generated__/graphql";
 import { DateInput, Input } from "@nextui-org/react";
 import { COMPLETE_FURTHER_INFORMATION } from "@/apis/user.api";
+import toast from "react-hot-toast";
 
 interface Props {}
 const furtherInformationStyles = tv({
@@ -39,7 +40,6 @@ const FurtherInformationForm = (props: Props) => {
   const { data, loading: getSKillsLoading } = useQuery(GET_SKILLS_BRIEF, {
     fetchPolicy: "network-only",
     onCompleted: (data) => {
-      // setUserInfo(data.userProfile);
       console.log(data);
     },
     onError: (err) => {
@@ -47,7 +47,12 @@ const FurtherInformationForm = (props: Props) => {
     },
   });
   const [completeFutherInformation, { loading }] = useMutation(
-    COMPLETE_FURTHER_INFORMATION
+    COMPLETE_FURTHER_INFORMATION,
+    {
+      onCompleted: () => {
+        toast.success("اطلاعات شما با موفقیت ثبت شد");
+      },
+    }
   );
 
   const handleChageFields = (e: ChangeEvent<HTMLInputElement>) => {
@@ -111,7 +116,11 @@ const FurtherInformationForm = (props: Props) => {
         }}
       >
         {data?.getSkillsBrief.map((item) => (
-          <CrAutocompleteItem key={item.id} value={item.id} color="primary">
+          <CrAutocompleteItem
+            key={`${item.id}`}
+            value={`${item.id}`}
+            color="primary"
+          >
             {item.name}
           </CrAutocompleteItem>
         ))}
