@@ -1,6 +1,6 @@
 "use client";
 import { UserModelSafe } from "@/__generated__/graphql";
-import { CHECK_AUTH } from "@/apis/signup.api";
+import { CHECK_AUTH } from "@/apis/auth.api";
 import { USER_PROFILE } from "@/apis/user.api";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import { createContext, useCallback, useState } from "react";
@@ -26,6 +26,7 @@ type AuthLoading = {
 };
 
 type GeneralDataContextValue = {
+  
   setToken: (token: Token) => void;
   deleteToken: () => void;
 } & (LoggedInData | AuthLoading);
@@ -43,7 +44,7 @@ interface GeneralDataWrapperProps {
 export const GeneralDataWrapper: React.FC<GeneralDataWrapperProps> = ({
   children,
 }) => {
-  const [userInfo, setUserInfo] = useState<UserModelSafe | null>();
+  const [userInfo, setUserInfo] = useState<UserModelSafe | null>(null);
   //   const checkTokenValidity = async () => {
   //     try {
   //       await axiosInstance.get("/user/check/auth");
@@ -56,7 +57,9 @@ export const GeneralDataWrapper: React.FC<GeneralDataWrapperProps> = ({
     useLazyQuery(USER_PROFILE, {
       fetchPolicy: "network-only",
       onCompleted: (data) => {
-        setUserInfo(data.userProfile);
+        if (data.userProfile) {
+          setUserInfo(data.userProfile);
+        }
       },
       onError: () => {
         setUserInfo(null);

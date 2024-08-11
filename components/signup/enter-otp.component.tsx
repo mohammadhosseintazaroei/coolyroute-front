@@ -1,5 +1,5 @@
 "use client";
-import { LOGIN, RENEW_OTP, VERIFICATION_CODE } from "@/apis/signup.api";
+import { LOGIN, RENEW_OTP, VERIFICATION_CODE } from "@/apis/auth.api";
 import { LoginStates, LoginSteps } from "@/interfaces/signup.interface";
 import { useLazyQuery } from "@apollo/client";
 import React, { useContext, useState } from "react";

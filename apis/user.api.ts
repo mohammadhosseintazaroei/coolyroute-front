@@ -9,6 +9,21 @@ export const USER_PROFILE = gql(`
     phoneNumber
     email
     isComplete
+    userSkills {                          
+    id
+    skill { 
+    name}
+    }
     }
   }
+`);
+
+export const COMPLETE_FURTHER_INFORMATION = gql(`
+ mutation completeFurtherInformation(
+  $data: CompleteFurtherInformationDto!,
+) {
+  completeFurtherInformation(
+    data: $data
+  )
+}
 `);

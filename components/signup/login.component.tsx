@@ -27,9 +27,11 @@ const Login = () => {
     return <>loading...</>;
   }
   if (isLoggedIn && userInfo.isComplete) {
-    router.push("/");
+    router.push("/events");
+    return;
   } else if (isLoggedIn && !userInfo.isComplete) {
     router.push("/profile/further-information");
+    return;
   }
   const returnActiveLoginView = () => {
     switch (activeLoginState) {
@@ -40,9 +42,7 @@ const Login = () => {
             description="برای ورود به حساب کاربری خود شماره خود را وارد کنید."
             disableBackButton
           >
-            <EnterMobile
-              setActiveLoginState={setActiveLoginState}
-            />
+            <EnterMobile setActiveLoginState={setActiveLoginState} />
           </LoginBoxLayout>
         );
       case LoginStates.EnterOtp:

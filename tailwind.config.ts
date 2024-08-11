@@ -49,8 +49,9 @@ module.exports = withTV({
   },
   plugins: [
     nextui({
+      defaultTheme: "dark",
       themes: {
-        main: {
+        dark: {
           colors: {
             primary: {
               DEFAULT: "#09091F",

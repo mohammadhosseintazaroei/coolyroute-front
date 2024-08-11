@@ -2,15 +2,26 @@
 import { tv } from "tailwind-variants";
 import { CrButton } from "../global/cr-button/cr-button.component";
 import { CrTextField } from "../global/cr-fields/cr-text-field.compnent";
-import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from "react";
+import {
+  ChangeEvent,
+  ChangeEventHandler,
+  FormEvent,
+  Key,
+  useState,
+} from "react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/autocomplete";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GET_SKILLS_BRIEF } from "@/apis/skills.api";
 import {
   CrAutocomplete,
   CrAutocompleteItem,
 } from "../global/cr-fields/cr-autocomplete.component";
-import { BriefSkillModel } from "@/__generated__/graphql";
+import {
+  BriefSkillModel,
+  CompleteFurtherInformationDto,
+} from "@/__generated__/graphql";
+import { DateInput, Input } from "@nextui-org/react";
+import { COMPLETE_FURTHER_INFORMATION } from "@/apis/user.api";
 
 interface Props {}
 const furtherInformationStyles = tv({
@@ -22,7 +33,8 @@ const furtherInformationStyles = tv({
 });
 const styles = furtherInformationStyles();
 const FurtherInformationForm = (props: Props) => {
-  const [formState, setFormState] = useState({});
+  const [formData, setFormData] =
+    useState<CompleteFurtherInformationDto | null>(null);
 
   const { data, loading: getSKillsLoading } = useQuery(GET_SKILLS_BRIEF, {
     fetchPolicy: "network-only",
@@ -34,19 +46,35 @@ const FurtherInformationForm = (props: Props) => {
       console.log(err);
     },
   });
+  const [completeFutherInformation, { loading }] = useMutation(
+    COMPLETE_FURTHER_INFORMATION
+  );
 
   const handleChageFields = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    if (e.target.value) {
+      setFormData({
+        ...formData!,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
-  const onSelectionChange = (key) => {
-    console.log(key);
+  const onSelectionChange = (key: Key | null) => {
+    setFormData({ ...formData, skillId: Number(key) });
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(formState);
+    console.log(formData);
+    if (formData) {
+      completeFutherInformation({
+        variables: {
+          data: formData,
+        },
+      });
+    }
   };
+
   return (
     <form onSubmit={handleSubmit} className={styles.formInputsWrapper()}>
       <CrTextField
@@ -56,7 +84,6 @@ const FurtherInformationForm = (props: Props) => {
         radius="sm"
         name="firstName"
         onChange={handleChageFields}
-        required
         errorMessage="شماره تلفن را به درستی وارد کنید"
       />
       <CrTextField
@@ -66,21 +93,25 @@ const FurtherInformationForm = (props: Props) => {
         radius="sm"
         name="lastName"
         onChange={handleChageFields}
-        required
         errorMessage="شماره تلفن را به درستی وارد کنید"
       />{" "}
       <CrAutocomplete
-        label="Search an animal"
+        label="حوزه کاری"
         isLoading={getSKillsLoading}
         variant="flat"
+        placeholder="حوزه کاری خود را انتخاب کنید"
+        color="primary"
         defaultItems={data?.getSkillsBrief}
-        className="max-w-xs"
         allowsCustomValue={true}
         onSelectionChange={onSelectionChange}
-        // onInputChange={onInputChange}
+        required
+        isRequired
+        inputProps={{
+          required: true,
+        }}
       >
         {data?.getSkillsBrief.map((item) => (
-          <CrAutocompleteItem key={item.id} value={item.id}>
+          <CrAutocompleteItem key={item.id} value={item.id} color="primary">
             {item.name}
           </CrAutocompleteItem>
         ))}

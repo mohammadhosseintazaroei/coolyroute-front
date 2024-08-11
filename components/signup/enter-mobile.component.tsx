@@ -1,5 +1,5 @@
 "use client";
-import { LOGIN } from "@/apis/signup.api";
+import { LOGIN } from "@/apis/auth.api";
 import { LoginStates } from "@/interfaces/signup.interface";
 import { validatePhoneNumber } from "@/utils/validate";
 import { useLazyQuery } from "@apollo/client";

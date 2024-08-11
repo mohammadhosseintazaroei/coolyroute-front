@@ -1,12 +1,24 @@
-import React from "react";
+"use client";
+import { useContext } from "react";
+import { GeneralDataContext } from "../providers/general-data-provider";
 import LoginBoxLayout from "../signup/login-box-layout.component";
 import FurtherInformationForm from "./further-information-form.component";
+import { useRouter } from "next/navigation";
 
 const FurtherInformation = () => {
+  const router = useRouter();
+  const { isLoggedIn, isLoading, userInfo } = useContext(GeneralDataContext);
+  if (isLoading) {
+    return <>loading ...</>;
+  }
+  if (isLoggedIn && userInfo.isComplete) {
+    router.push("/events");
+    return;
+  }
   return (
     <LoginBoxLayout
-      title="تایید شماره"
-      description="کد تایید ۵ رقمی ارسال شده به شماره 09385051602 را وارد نمایید "
+      title="تکمیل اطالاعات حساب کاربردی"
+      description="اطلاعات زیر رو پر کن تا به همه خدمات سایت دسترسی پیدا کنی !"
       disableBackButton
     >
       <FurtherInformationForm />

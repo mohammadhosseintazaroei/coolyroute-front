@@ -33,7 +33,7 @@ export default function RootLayout({
       </head>
       <body className={`${yekanFont.className} `}>
         <Providers>
-          <main className=" main bg-primary  text-neutral-lighter ">
+          <main className=" dark bg-primary  text-neutral-lighter ">
             <Navbar />
             <div className="flex justify-center">{children}</div>
           </main>
