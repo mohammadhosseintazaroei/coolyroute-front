@@ -3,6 +3,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import Navbar from "@/components/layout/navbar";
 import { ApolloWrapper } from "@/components/providers/appolo-client-provider";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: {
@@ -30,11 +31,13 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${yekanFont.className} bg-primary text-light`}>
-        <Navbar />
-        <div className="flex justify-center">
-          <ApolloWrapper>{children}</ApolloWrapper>
-        </div>
+      <body className={`${yekanFont.className} `}>
+        <Providers>
+          <main className=" dark bg-primary  text-neutral-lighter ">
+            <Navbar />
+            <div className="flex justify-center">{children}</div>
+          </main>
+        </Providers>
       </body>
     </html>
   );

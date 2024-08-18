@@ -36,7 +36,6 @@ const EventsPage = async (props: Props) => {
       },
     },
   });
-
   return <Events events={data.getAllEvents} />;
 };
 
