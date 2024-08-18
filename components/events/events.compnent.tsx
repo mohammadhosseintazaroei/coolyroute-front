@@ -3,12 +3,13 @@ import React from "react";
 import { tv } from "tailwind-variants";
 import EventCard from "./event-card.component";
 import { gql, useQuery } from "@apollo/client";
+import Reveal from "../global/reveal.components";
 
 interface Props {
   events: any;
 }
 
-export default async function Page(props: Props) {
+export default function Page(props: Props) {
   return (
     <div
       className={container({

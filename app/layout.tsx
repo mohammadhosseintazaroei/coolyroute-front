@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import Navbar from "@/components/layout/navbar";
 import { ApolloWrapper } from "@/components/providers/appolo-client-provider";
 import { Providers } from "./providers";
+import PageLoading from "@/components/global/page-loading.component";
 
 export const metadata: Metadata = {
   title: {
@@ -27,17 +28,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa" dir="rtl" className="h-full">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${yekanFont.className} `}>
-        <Providers>
-          <main className=" dark bg-primary  text-neutral-lighter ">
+      <body className={`${yekanFont.className} h-full  `}>
+        <main
+          id="main"
+          className="dark text-neutral-lighter bg-primary transition-all duration-200 ease-in-out"
+        >
+          <Providers>
             <Navbar />
             <div className="flex justify-center">{children}</div>
-          </main>
-        </Providers>
+          </Providers>
+        </main>
+        <PageLoading />
       </body>
     </html>
   );

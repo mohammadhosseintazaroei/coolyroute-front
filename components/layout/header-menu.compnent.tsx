@@ -6,6 +6,8 @@ import React, { MouseEvent, useContext, useEffect, useState } from "react";
 import { LogOut, User } from "react-feather";
 import { tv } from "tailwind-variants";
 import { GeneralDataContext } from "../providers/general-data-provider";
+import { TransitionLink } from "../global/TransitionLink.component";
+import { useRouter } from "next/navigation";
 const menuItems = [
   { text: "خانه", link: "/" },
   { text: "رویداد ها", link: "/events" },
@@ -19,7 +21,7 @@ const HeaderMenu = (props: Props) => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [openUserAccountTab, setOpenUserAccountTab] = useState(false);
   const { deleteToken, isLoggedIn } = useContext(GeneralDataContext);
-
+  const router = useRouter();
   const handleClick = () => {
     setOpenMobileMenu(!openMobileMenu);
   };
@@ -57,7 +59,9 @@ const HeaderMenu = (props: Props) => {
         "flex items-center h-10 md:h-12 text-md md:text-lg max-md:h-10 px-6 bg-primary-light rounded-xl text-md font-normal",
     },
   });
+
   const styles = headerMenu();
+
   return (
     <>
       <button onClick={handleClick} className={styles.hamburgerMenuButton()}>
@@ -83,13 +87,13 @@ const HeaderMenu = (props: Props) => {
         } `}
       >
         {menuItems.map((item, index) => (
-          <Link
+          <TransitionLink
             href={item.link}
             key={index}
             className={`${styles.menuItem()} ${item.classes}`}
           >
             {item.text}
-          </Link>
+          </TransitionLink>
         ))}
       </nav>
       {console.log(isLoggedIn)}

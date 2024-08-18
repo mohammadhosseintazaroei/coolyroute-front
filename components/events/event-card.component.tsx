@@ -1,6 +1,10 @@
-import React from "react";
+"use client";
+import { Suspense } from "react";
 import { tv } from "tailwind-variants";
 import CrButton from "../global/cr-button.component";
+import RevealInView from "../global/reveal-inview.components";
+import EventImage from "./event-image.component";
+import { useAnimate, motion } from "framer-motion";
 import Image from "next/image";
 interface Props {
   eventData: any;
@@ -20,33 +24,64 @@ const eventCardStyles = tv({
 });
 const styles = eventCardStyles();
 const EventCard = (props: Props) => {
+  const [scope, animate] = useAnimate();
+
+  const image = {
+    initial: { rotate: -10, scale: 0.95, y: 0 },
+    hover: { y: "-10%", scale: 1.1, rotate: -10 },
+  };
+  const cardWrapper = {
+    click: { y: "-3%", scale: 1.05 },
+  };
   return (
-    <div className={styles.card()}>
-      <div className={styles.hoveredBg()}></div>
-      <div className={styles.cardWrapper()}>
-        <Image
-          src="/assets/images/events/event-1.png"
-          width={256}
-          height={50}
-          alt="event"
-        />
-        <div className={styles.contentWrapper()}>
-          <p>{props.eventData.title}</p>
-          <p className={styles.description()}>{props.eventData.description}</p>
-          <div className={styles.detailsWrapper()}>
-            <div className={styles.detailWrapper()}>
-              <p>شروع :</p>
-              <p className={styles.detailValue()}>1 / 2/ 1403 ساعت 15:40</p>
-            </div>
-            <div className={styles.detailWrapper()}>
-              <p>پایان :</p>
-              <p className={styles.detailValue()}>5 / 2 / 1403 ساعت 18:00</p>
-            </div>
+    <Suspense fallback={<>loading</>}>
+      <RevealInView transition={{ duration: 0.5, delay: 0.35 }}>
+        <motion.div
+          className={styles.card()}
+          ref={scope}
+          variants={cardWrapper}
+          whileHover={["hover"]}
+          whileTap={["click", "initial"]}
+        >
+          <div className={styles.hoveredBg()}></div>
+          <div className={styles.cardWrapper()}>
+            <motion.div variants={image}>
+              <RevealInView transition={{ duration: 0.5, delay: 0.6 }}>
+                <Image
+                  src="/assets/images/events/event-1.png"
+                  width={256}
+                  height={50}
+                  alt="event"
+                />
+              </RevealInView>
+            </motion.div>
+            <RevealInView>
+              <div className={styles.contentWrapper()}>
+                <p>{props.eventData.title}</p>
+                <p className={styles.description()}>
+                  {props.eventData.description}
+                </p>
+                <div className={styles.detailsWrapper()}>
+                  <div className={styles.detailWrapper()}>
+                    <p>شروع :</p>
+                    <p className={styles.detailValue()}>
+                      1 / 2/ 1403 ساعت 15:40
+                    </p>
+                  </div>
+                  <div className={styles.detailWrapper()}>
+                    <p>پایان :</p>
+                    <p className={styles.detailValue()}>
+                      5 / 2 / 1403 ساعت 18:00
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </RevealInView>
+            <CrButton>ثبت نام</CrButton>
           </div>
-        </div>
-        <CrButton>ثبت نام</CrButton>
-      </div>
-    </div>
+        </motion.div>
+      </RevealInView>
+    </Suspense>
   );
 };
 
