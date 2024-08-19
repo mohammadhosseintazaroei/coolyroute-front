@@ -1,17 +1,19 @@
 "use client";
-import { Suspense } from "react";
-import { tv } from "tailwind-variants";
-import CrButton from "../global/cr-button.component";
-import RevealInView from "../global/reveal-inview.components";
-import EventImage from "./event-image.component";
-import { useAnimate, motion } from "framer-motion";
+import { EventModel } from "@/__generated__/graphql";
+import { motion, useAnimate } from "framer-motion";
 import Image from "next/image";
+import { tv } from "tailwind-variants";
+import Button from "../global/cr-button.component";
+import { CrButton } from "../global/cr-button/cr-button.component";
+import RevealInView from "../global/reveal-inview.components";
+import { TransitionLink } from "../global/TransitionLink.component";
 interface Props {
-  eventData: any;
+  eventData: EventModel;
+  disablseAnimations?: boolean;
 }
 const eventCardStyles = tv({
   slots: {
-    card: " group bg-gradient-to-t from-primary-light to-primary-lighter  w-[300px] p-5 -lg shadow-lg rounded-lg relative",
+    card: " group bg-gradient-to-t from-primary-light to-primary-lighter  w-[300px] p-5 -lg shadow-lg rounded-lg relative cursor-pointer",
     cardWrapper: " flex flex-col  gap-4 z-10 bg-inherit relative",
     contentWrapper: "flex flex-col gap-2.5 items-start",
     description: "text-sm text-start text-neutral",
@@ -33,9 +35,10 @@ const EventCard = (props: Props) => {
   const cardWrapper = {
     click: { y: "-3%", scale: 1.05 },
   };
+
   return (
-    <Suspense fallback={<>loading</>}>
-      <RevealInView transition={{ duration: 0.5, delay: 0.35 }}>
+    <TransitionLink href={`/events/${props.eventData.id}`}>
+      <RevealInView disable={props.disablseAnimations}>
         <motion.div
           className={styles.card()}
           ref={scope}
@@ -46,7 +49,10 @@ const EventCard = (props: Props) => {
           <div className={styles.hoveredBg()}></div>
           <div className={styles.cardWrapper()}>
             <motion.div variants={image}>
-              <RevealInView transition={{ duration: 0.5, delay: 0.6 }}>
+              <RevealInView
+                transition={{ duration: 0.5, delay: 0.6 }}
+                disable={props.disablseAnimations}
+              >
                 <Image
                   src="/assets/images/events/event-1.png"
                   width={256}
@@ -55,7 +61,7 @@ const EventCard = (props: Props) => {
                 />
               </RevealInView>
             </motion.div>
-            <RevealInView>
+            <RevealInView disable={props.disablseAnimations}>
               <div className={styles.contentWrapper()}>
                 <p>{props.eventData.title}</p>
                 <p className={styles.description()}>
@@ -78,10 +84,11 @@ const EventCard = (props: Props) => {
               </div>
             </RevealInView>
             <CrButton>ثبت نام</CrButton>
+            <Button>ثبت نام</Button>
           </div>
         </motion.div>
       </RevealInView>
-    </Suspense>
+    </TransitionLink>
   );
 };
 

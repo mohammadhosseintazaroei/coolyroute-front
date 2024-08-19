@@ -5,12 +5,14 @@ type Props = {
   children?: ReactNode;
   width?: "fit-content" | "100%";
   transition?: AnimationProps["transition"];
+  disable?: boolean;
 };
 
 const RevealInView = ({
   children,
   width = "fit-content",
   transition,
+  disable,
 }: Props) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -19,6 +21,9 @@ const RevealInView = ({
     if (isInView) mainControls.start("visible");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInView]);
+
+  if (disable) return children;
+
   return (
     <div ref={ref} className={` w-[${width}]`}>
       <motion.div
