@@ -20,6 +20,7 @@
     "@nextui-org/system": "^2.2.2",
     "@nextui-org/theme": "^2.2.6",
     "@parcel/watcher": "^2.4.1",
+    "@types/tailwindcss": "^3.1.0",
     "framer-motion": "^11.2.13",
     "graphql": "^16.9.0",
     "next": "14.2.3",

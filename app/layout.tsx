@@ -28,18 +28,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className="h-full">
+    <html lang="fa" dir="rtl">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${yekanFont.className} h-full  `}>
+      <body
+        className={`${yekanFont.className} h-screen  `}
+    
+      >
         <main
           id="main"
-          className="dark text-neutral-lighter bg-primary transition-all duration-200 ease-in-out"
+          className="dark text-neutral-lighter bg-primary transition-all duration-200 ease-in-out "
         >
           <Providers>
             <Navbar />
-            <div className="flex justify-center">{children}</div>
+            <div className="flex justify-center pl-7 pr-7">{children}</div>
           </Providers>
         </main>
         <PageLoading />

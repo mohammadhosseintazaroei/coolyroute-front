@@ -1,4 +1,5 @@
 import { GET_EVENT_BY_ID } from "@/apis/event.api";
+import EventPage from "@/components/event-page";
 import { getClient } from "@/lib/appolo-client";
 import { Metadata } from "next";
 
@@ -26,9 +27,10 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="flex flex-col">
-      <h1 className="block">{data.getEventById.id}</h1>
+      <EventPage data={data.getEventById} />
+      {/* <h1 className="block">{data.getEventById.id}</h1>
       <h2> {data.getEventById.title}</h2>
-      <div> {data.getEventById.description}</div>
+      <div> {data.getEventById.description}</div> */}
     </div>
   );
 };

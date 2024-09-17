@@ -83,8 +83,23 @@ const EventCard = (props: Props) => {
                 </div>
               </div>
             </RevealInView>
-            <CrButton>ثبت نام</CrButton>
-            <Button>ثبت نام</Button>
+            <CrButton
+              onClick={(e) => {
+                e.preventDefault();
+                console.log("d");
+              }}
+            >
+              ثبت نام
+            </CrButton>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("d");
+              }}
+            >
+              ثبت نام
+            </Button>
           </div>
         </motion.div>
       </RevealInView>

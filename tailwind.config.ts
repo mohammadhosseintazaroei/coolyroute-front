@@ -1,6 +1,7 @@
 import { BaseColors, nextui } from "@nextui-org/theme";
 import { withTV } from "tailwind-variants/dist/transformer.js";
 import type { Config } from "tailwindcss";
+import type { PluginAPI } from "tailwindcss/types/config";
 type ColorScale = {
   50: string;
   100: string;
@@ -82,5 +83,15 @@ module.exports = withTV({
         },
       },
     }),
+    function ({ addBase }: PluginAPI) {
+      addBase({
+        ":root": {
+          "--color-primary-default": "#09091F",
+          "--color-primary-light": "#12122F",
+          "--color-primary-lightest": "#23234A",
+          // define other variables as needed
+        },
+      });
+    },
   ],
 });

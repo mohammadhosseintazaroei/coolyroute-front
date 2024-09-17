@@ -1,5 +1,6 @@
 import { tv } from "tailwind-variants";
-
+const calculateTwoNumber = () => {};
+complete htis coede
 const container = tv(
   {
     base: "grid gap-4 text-white text-center leading-6 ",
