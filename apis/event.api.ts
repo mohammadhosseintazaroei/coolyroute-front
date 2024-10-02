@@ -10,14 +10,15 @@ query getAllEvents{
 }
 `);
 
-
 export const GET_EVENT_BY_ID = gql(`
 query getEventById( $id: Int! ){
   getEventById (id: $id){
     id
     title
     description
+    date
+    endTime
+    startTime
   }
 }
 `);
-

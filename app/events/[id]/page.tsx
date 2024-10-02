@@ -10,8 +10,6 @@ export const metadata: Metadata = {
 };
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  console.log("params", params);
-  console.log("params", typeof params.id);
   const { data, loading, error } = await getClient().query({
     query: GET_EVENT_BY_ID,
     variables: {
@@ -24,13 +22,10 @@ const Page = async ({ params }: { params: { id: string } }) => {
       },
     },
   });
-
+  console.log("hi", data);
   return (
     <div className="flex flex-col">
       <EventPage data={data.getEventById} />
-      {/* <h1 className="block">{data.getEventById.id}</h1>
-      <h2> {data.getEventById.title}</h2>
-      <div> {data.getEventById.description}</div> */}
     </div>
   );
 };

@@ -1,9 +1,7 @@
-import { tv } from "tailwind-variants";
-import { container } from "../../globalStyles/layout";
-import Events from "@/components/events/events.main";
-import { Metadata } from "next";
-import { getClient } from "@/lib/appolo-client";
 import { GET_ALL_EVENTS } from "@/apis/event.api";
+import Events from "@/components/events/events.main";
+import { getClient } from "@/lib/appolo-client";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "رویداد ها",
