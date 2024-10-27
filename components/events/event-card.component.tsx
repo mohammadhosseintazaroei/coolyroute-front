@@ -1,27 +1,26 @@
 "use client";
-import { EventModel } from "@/__generated__/graphql";
+import { BriefSkillModel, EventModel } from "@/__generated__/graphql";
 import { motion, useAnimate } from "framer-motion";
 import Image from "next/image";
 import { tv } from "tailwind-variants";
-import Button from "../global/cr-button.component";
-import { CrButton } from "../global/cr-button/cr-button.component";
 import RevealInView from "../global/reveal-inview.components";
 import { TransitionLink } from "../global/TransitionLink.component";
+import { Button } from "../ui/button";
 interface Props {
   eventData: EventModel;
   disablseAnimations?: boolean;
 }
 const eventCardStyles = tv({
   slots: {
-    card: " group bg-gradient-to-t from-primary-light to-primary-lighter  w-[300px] p-5 -lg shadow-lg rounded-lg relative cursor-pointer",
+    card: " group  bg-card w-[300px] p-5 -lg shadow-lg rounded-lg relative cursor-pointer",
     cardWrapper: " flex flex-col  gap-4 z-10 bg-inherit relative",
     contentWrapper: "flex flex-col gap-2.5 items-start",
-    description: "text-sm text-start text-neutral",
+    description: "text-sm text-start text-foreground ",
     detailsWrapper: "flex flex-col gap-2 w-full",
-    detailWrapper: "flex justify-between text-sm text-bold",
-    detailValue: "text-neutral",
+    detailWrapper: "flex justify-between text-sm text-bold text-foreground",
+    detailValue: "text-foreground",
     hoveredBg:
-      "opacity-0 transition   duration-200 group-hover:opacity-100 bg-gradient-to-br from-primary-lighter to-primary-light absolute  top-0 right-0 size-full rounded-lg",
+      "opacity-0 transition   duration-200 group-hover:opacity-100 absolute  top-0 right-0 size-full rounded-lg",
   },
 });
 const styles = eventCardStyles();
@@ -83,20 +82,14 @@ const EventCard = (props: Props) => {
                 </div>
               </div>
             </RevealInView>
-            <CrButton
-              onClick={(e) => {
-                e.preventDefault();
-                console.log("d");
-              }}
-            >
-              ثبت نام
-            </CrButton>
+
             <Button
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 console.log("d");
               }}
+              className="bg-success-200 hover:bg-success text-foreground"
             >
               ثبت نام
             </Button>

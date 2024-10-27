@@ -24,7 +24,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
   });
   console.log("hi", data);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-hidden">
       <EventPage data={data.getEventById} />
     </div>
   );

@@ -1,9 +1,12 @@
 "use client";
-
+import imageVectorGreen from "@/public/assets/images/event/hero-section-vector-green.svg";
+import imageVectorOrange from "@/public/assets/images/event/hero-section-vector-orange.svg";
+import BannerImage from "@/public/assets/images/event/banner.jpg";
 import { EventModel } from "@/__generated__/graphql";
 import Image from "next/image";
 import { Heart, Share2 } from "react-feather";
 import { tv } from "tailwind-variants";
+import { useEffect, useState } from "react";
 interface Props {
   data: EventModel;
 }
@@ -21,33 +24,73 @@ const eventHero = tv({
 });
 
 export const Hero = (props: Props) => {
+  const [offsetY, setOffsetY] = useState(0);
+
+  const handleScroll = () => {
+    setOffsetY(window.pageYOffset);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
   return (
-    <div className=" z-10 flex items-center w-full pr-7 pl-7 top-0">
+    <section className="relative w-screen left-0 right-0 overflow-hidden py-6 lg:py-12">
       {" "}
-      <div className="relative flex justify-center rounded-[32px] w-full py-6 px-7">
-        <div className="flex flex-col gap-2.5 w-full z-10">
-          <h1 className="mb-12  font-heading text-3xl leading-[1]">
-            {props.data.title}
-          </h1>
-          <p className="mb-2 text-xl font-light">
-            <span className="font-medium">{props.data.description}</span>
-          </p>
-        </div>
-        <div className="w-[420px] flex flex-col rounded-3xl  bg-primary-light z-10">
-          <div className="flex justify-between ">
-            <Share2 />
-            <Heart />
+      <Image
+        src={BannerImage}
+        className="absolute  left-0 right-0 w-screen brightness-[.2] "
+        alt={props.data.title}
+        width={1000}
+        style={{
+          transform: `translateY(${offsetY * 0.5}px)`,
+        }}
+      />
+      <div className="container flex flex-col items-center">
+        <div className="flex justify-center">
+          <div className="flex flex-col space-y-2 lg:w-8/12">
+            <h1 className="text-3xl font-extrabold md:text-5xl/normal z-10">
+              {props.data.title}
+            </h1>
+            <h2 className="text-lg text-zinc-400 lg:text-2xl/normal z-10">
+              {props.data.description}
+            </h2>
+
+            <div className="grid grid-cols-2 gap-3 pt-4 md:flex md:gap-8 md:pt-6 z-10">
+              {[
+                {
+                  title: "زمان",
+                  description: "۱۰ اسفند ۱۴۰۲",
+                },
+                {
+                  title: "سخنرانان",
+                  // description: `${speakersData.length.toLocaleString(
+                  //   "fa-IR"
+                  // )} نفر`,
+                  description: "df",
+                },
+                {
+                  title: "شهر",
+                  description: "آمل، مازندران",
+                },
+                {
+                  title: "مکان",
+                  description: "مجموعه اریکه آریایی",
+                },
+              ].map((item, index) => {
+                return (
+                  <div key={index} className="">
+                    <p className="text-sm font-light text-zinc-50 md:text-base">
+                      {item.title}
+                    </p>
+                    <p className="text-orange-500">{item.description}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-        <Image
-          src="/assets/images/events/event.jpg"
-          width={1384}
-          height={448}
-          className="absolute left-0  top-0  w-full -z-[0] brightness-50 rounded-[32px]"
-          objectFit="cover"
-          alt={props.data.title}
-        />
       </div>
-    </div>
+      {/* <HeroImages /> */}
+    </section>
   );
 };

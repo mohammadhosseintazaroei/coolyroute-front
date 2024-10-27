@@ -9,15 +9,20 @@ import { NoLockin } from "./no-lockin";
 import { Hero } from "./hero";
 import Container from "./container";
 import { EventModel } from "@/__generated__/graphql";
+import Link from "next/link";
+import Image from "next/image";
+import Timeline from "./time-line-item";
 
 interface Props {
   data: EventModel;
 }
+
 const EventPage = (props: Props) => {
   const ref = useRef();
   return (
-    <main >
-      <Hero data={props.data}  />
+    <main>
+      <Hero data={props.data} />
+      <Timeline />
     </main>
   );
 };

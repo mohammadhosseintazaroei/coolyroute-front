@@ -10,6 +10,7 @@ import { CrButton } from "../global/cr-button/cr-button.component";
 import { CrTextField } from "../global/cr-fields/cr-text-field.compnent";
 import { GeneralDataContext } from "../providers/general-data-provider";
 import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 
 interface Props {
   setActiveLoginState: React.Dispatch<React.SetStateAction<LoginStates>>;
@@ -115,25 +116,12 @@ const EnterOtp = (props: Props) => {
         )}
       </div>
       <div className={styles.buttonContainer()}>
-        <CrButton
-          color="success"
-          radius="sm"
-          type="submit"
-          fullWidth
-          isLoading={loading}
-        >
+        <Button color="success" type="submit">
           تایید و ادامه
-        </CrButton>
-        <CrButton
-          color="light"
-          variant="bordered"
-          radius="sm"
-          onClick={handleEditNumberClick}
-          type="submit"
-          fullWidth
-        >
+        </Button>
+        <Button color="light" onClick={handleEditNumberClick} type="button">
           ویرایش شماره
-        </CrButton>
+        </Button>
       </div>
     </form>
   );

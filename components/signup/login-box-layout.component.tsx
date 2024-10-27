@@ -6,13 +6,12 @@ import { tv } from "tailwind-variants";
 const loginStyles = tv({
   slots: {
     formWrapper:
-      "flex flex-col rounded-lg bg-primary-light px-6 pt-8 pb-11 w-[630px] gap-10",
-    formTitle: "text-2xl font-medium text-neutral-light",
+      "flex flex-col rounded-lg bg-card   px-6 pt-8 pb-11 w-[630px] gap-10",
+    formTitle: "text-2xl font-medium ",
     backButton:
       "bg-primary-lighte rounded-2xl size-12 flex justify-center items-center",
     backIcon: "size-5",
     formHeader: "flex flex-col gap-3",
-    headerDescription: "text-neutral",
     formTitleWrapper: "flex gap-5 items-center",
     formInputsWrapper: "flex flex-col  gap-7",
   },
@@ -38,7 +37,7 @@ const LoginBoxLayout = (props: Props) => {
 
           <h1 className={styles.formTitle()}>{props.title}</h1>
         </div>
-        <span className={styles.headerDescription()}>{props.description}</span>
+        <span>{props.description}</span>
       </div>
       {props.children}
     </div>

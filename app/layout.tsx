@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/navbar";
 import { ApolloWrapper } from "@/components/providers/appolo-client-provider";
 import { Providers } from "./providers";
 import PageLoading from "@/components/global/page-loading.component";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -32,20 +33,24 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body
-        className={`${yekanFont.className} h-screen  `}
-    
-      >
-        <main
-          id="main"
-          className="dark text-neutral-lighter bg-primary transition-all duration-200 ease-in-out "
+      <body className={`${yekanFont.className} h-screen  `}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
         >
-          <Providers>
-            <Navbar />
-            <div className="flex justify-center pl-7 pr-7">{children}</div>
-          </Providers>
-        </main>
-        <PageLoading />
+          <main
+            id="main"
+            className="bg-background text-foreground transition-all duration-200 ease-in-out "
+          >
+            <Providers>
+              <Navbar />
+              <div className="flex justify-center ">{children}</div>
+            </Providers>
+          </main>
+          <PageLoading />
+        </ThemeProvider>
       </body>
     </html>
   );
