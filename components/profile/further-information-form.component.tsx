@@ -1,6 +1,5 @@
 "use client";
 import { tv } from "tailwind-variants";
-import { CrButton } from "../global/cr-button/cr-button.component";
 import { CrTextField } from "../global/cr-fields/cr-text-field.compnent";
 import {
   ChangeEvent,
@@ -23,6 +22,7 @@ import {
 import { DateInput, Input } from "@nextui-org/react";
 import { COMPLETE_FURTHER_INFORMATION } from "@/apis/user.api";
 import toast from "react-hot-toast";
+import { Button } from "../ui/button";
 
 interface Props {}
 const furtherInformationStyles = tv({
@@ -125,15 +125,7 @@ const FurtherInformationForm = (props: Props) => {
           </CrAutocompleteItem>
         ))}
       </CrAutocomplete>
-      <CrButton
-        color="light"
-        variant="bordered"
-        radius="sm"
-        type="submit"
-        // isLoading={loading}
-      >
-        تایید و ادامه
-      </CrButton>
+      <Button type="submit">تایید و ادامه</Button>
     </form>
   );
 };

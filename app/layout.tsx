@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import Navbar from "@/components/layout/navbar";
 import { ApolloWrapper } from "@/components/providers/appolo-client-provider";
 import { Providers } from "./providers";
+import PageLoading from "@/components/global/page-loading.component";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -31,13 +33,24 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${yekanFont.className} `}>
-        <Providers>
-          <main className=" dark bg-primary  text-neutral-lighter ">
-            <Navbar />
-            <div className="flex justify-center">{children}</div>
+      <body className={`${yekanFont.className} h-screen  `}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main
+            id="main"
+            className="bg-background text-foreground transition-all duration-200 ease-in-out "
+          >
+            <Providers>
+              <Navbar />
+              <div className="flex justify-center ">{children}</div>
+            </Providers>
           </main>
-        </Providers>
+          <PageLoading />
+        </ThemeProvider>
       </body>
     </html>
   );

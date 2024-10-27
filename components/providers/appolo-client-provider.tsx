@@ -24,7 +24,7 @@ export function ApolloWrapper({ children }: React.PropsWithChildren) {
   });
   function makeClient() {
     const httpLink = new HttpLink({
-      uri: "http://localhost:8080/graphql",
+      uri: "http://localhost:35879/graphql",
       fetchOptions: {
         mode: "cors",
       },

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+            margin: 0;
+        }
+        .section {
+            height: 100vh;
+            scroll-snap-align: start;
+        }
+        .sub-section-container {
+            scroll-snap-type: y mandatory;
+            overflow-y: auto;
+            height: 100%;
+        }
+        .sub-section {
+            height: 50vh;
+            scroll-snap-align: start;
+            background-color: lightgrey;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="section" style="background-color: lightcoral;">
+        Section 1
+        <div class="sub-section-container">
+            <div class="sub-section">Sub-section 1-1</div>
+            <div class="sub-section">Sub-section 1-2</div>
+        </div>
+    </div>
+    <div class="section" style="background-color: lightblue;">Section 2</div>
+    <div class="section" style="background-color: lightgreen;">Section 3</div>
+</body>
+</html>

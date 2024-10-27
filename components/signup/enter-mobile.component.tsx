@@ -1,15 +1,14 @@
 "use client";
 import { LOGIN } from "@/apis/auth.api";
 import { LoginStates } from "@/interfaces/signup.interface";
-import { validatePhoneNumber } from "@/utils/validate";
+import { validatePhoneNumber } from "@/lib/utils/validate";
 import { useLazyQuery } from "@apollo/client";
 import React, { useState } from "react";
 import { AlertCircle, Phone } from "react-feather";
 import toast from "react-hot-toast";
 import { tv } from "tailwind-variants";
-import { CrButton } from "../global/cr-button/cr-button.component";
 import { CrTextField } from "../global/cr-fields/cr-text-field.compnent";
-
+import { Button } from "../ui/button";
 interface Props {
   setActiveLoginState: React.Dispatch<React.SetStateAction<LoginStates>>;
 }
@@ -77,15 +76,9 @@ const EnterMobile = (props: Props) => {
         isInvalid={!!phoneNumber && !isPhoneNumberValid}
         errorMessage="شماره تلفن را به درستی وارد کنید"
       />
-      <CrButton
-        color="light"
-        variant="bordered"
-        radius="sm"
-        type="submit"
-        isLoading={loading}
-      >
+      <Button color="light" type="submit" >
         تایید و ادامه
-      </CrButton>
+      </Button>
     </form>
   );
 };

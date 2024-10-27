@@ -1,7 +1,11 @@
 import React, { ReactNode } from "react";
 import { tv } from "tailwind-variants";
 
-interface Props {
+interface Props
+  extends React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   children: ReactNode;
   disabled?: boolean;
 }
@@ -27,7 +31,10 @@ const button = tv({
 
 const CrButton = (props: Props) => {
   return (
-    <button className={button({ color: "success", disabled: props.disabled })}>
+    <button
+      {...props}
+      className={button({ color: "success", disabled: props.disabled })}
+    >
       {props.children}
     </button>
   );
