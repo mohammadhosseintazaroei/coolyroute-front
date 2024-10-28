@@ -33,12 +33,15 @@ export default function Home() {
   };
   return (
     <div>
-      <div className="flex flex-row justify-between">
-        <div className="flex flex-col items-center mt-28 gap-[50px] w-1/2">
-          <div className="text-8xl">کولی کد</div>
-          <div className="text-5xl font-light">مرجع ایونت های تخصصی</div>
+      <div className="lg:flex lg:flex-row lg:justify-between">
+        <div className="flex flex-col items-center lg:mt-20 mb-10 md:mb-10 lg:gap-[50px] gap-[25px] w-1/2 mx-auto">
+          <Image src={business} alt="business" className="block lg:hidden" />
+          <div className="lg:text-[100px] text-[48px]">کولی کد</div>
+          <div className="lg:text-[45px] text-[24px] font-light">
+            مرجع ایونت های تخصصی
+          </div>
           <CrAutocomplete
-            className="max-w-[406px]"
+            className="lg:text-[406px] text-[268px]"
             label="حوزه کاری"
             isLoading={getSKillsLoading}
             variant="flat"
@@ -64,10 +67,10 @@ export default function Home() {
             ))}
           </CrAutocomplete>
         </div>
-        <Image src={business} alt="business" />
+        <Image src={business} alt="business" className="lg:block hidden" />
       </div>
       <div>
-        <div className="text-center text-[36px] animate-bounce animate-infinite">
+        <div className="text-center lg:text-[36px] text-[20px] animate-bounce animate-infinite">
           مشاهده آخرین ایونت ها
         </div>
         <Image src={down} alt="down" className="mx-auto my-3" />
@@ -77,8 +80,14 @@ export default function Home() {
           چرا کولی کد
         </div>
 
-        <div className="flex flex-row justify-center">
-          <div className="flex flex-col items-center w-[686px] gap-[25px] mx-6 mt-28">
+        <div className="flex flex-col lg:flex-row items-center justify-center">
+          <div className="flex flex-col items-center max-w-[686px] gap-[25px] mx-6 lg:mt-28 mt-10">
+            <Image
+              src={think}
+              alt="think"
+              className="max-w-[185.19px] max-h-[250px] lg:hidden block"
+            />
+
             <div className="text-2xl font-normal">
               تا حالا شده بخوای بری کوه، کمپ، طبیعت گردی ،ولی کسی رو نداشته باشی
               که باهات بیاد ؟
@@ -94,16 +103,20 @@ export default function Home() {
               فارسی ایجاد کرد، در این صورت. سه تا ویژگی مهم داریه
             </div>
           </div>
-          <Image src={think} alt="think" className="w-[379px] h-[513px]" />
+          <Image
+            src={think}
+            alt="think"
+            className="max-w-[379px] max-h-[513px] hidden lg:block"
+          />
         </div>
 
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex flex-col lg:flex-row items-center justify-center">
           <Image
             src={mountain}
             alt="mountain"
-            className="w-[475px.37] h-[342px]"
+            className="lg:max-w-[475px.37] lg:max-h-[342px] max-w-[210px] max-h-[151.42px]"
           />
-          <div className="flex flex-col w-[686px] gap-[25px] m-4">
+          <div className="flex flex-col max-w-[686px] gap-[25px] m-4">
             <div className="text-2xl font-normal">سفر و تفریح</div>
             <div className="text-neutral-lighter text-lg font-light">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
@@ -118,8 +131,13 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-row justify-center">
-          <div className="flex flex-col mt-28 mx-6 w-[686px] gap-[25px]">
+        <div className="flex flex-col lg:flex-row items-center justify-center">
+          <div className="flex flex-col lg:mt-28 lg:mx-6 max-w-[686px] gap-[25px] mx-6">
+            <Image
+              src={referral}
+              alt="referral"
+              className="max-w-[233px] max-h-[264px] lg:hidden block lg:mx-0 mx-auto"
+            />
             <div className="text-2xl font-normal">
               شبکه سازی و ارتباطات موثر
             </div>
@@ -137,7 +155,7 @@ export default function Home() {
           <Image
             src={referral}
             alt="referral"
-            className="w-[450px] h-[450px]"
+            className="max-w-[450px] max-h-[450px] hidden lg:block"
           />
         </div>
       </div>
