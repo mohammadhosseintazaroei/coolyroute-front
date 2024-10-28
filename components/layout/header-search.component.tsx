@@ -22,7 +22,7 @@ const HeaderSearch = () => {
         <input
           id="search"
           autoComplete="off"
-          className=" bg-primary-light text-sm  outline-none size-10 rounded-xl sm:size-14 sm:rounded-3xl flex justify-center items-center transition-width duration-200 lg:focus:w-[200px] sm:pr-10 sm:pl-4 placeholder:opacity-0 lg:focus:placeholder:opacity-100  lg:focus:pr-[50px]"
+          className="bg-transparent border-2 border-primary text-sm  outline-none size-10 rounded-xl sm:size-14 sm:rounded-3xl flex justify-center items-center transition-width duration-200 lg:focus:w-[200px] sm:pr-10 sm:pl-4 placeholder:opacity-0 lg:focus:placeholder:opacity-100  lg:focus:pr-[50px]"
           placeholder="جستوجو در رویدادها ..."
         />
 
