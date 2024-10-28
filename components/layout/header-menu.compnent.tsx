@@ -8,12 +8,13 @@ import { tv } from "tailwind-variants";
 import { GeneralDataContext } from "../providers/general-data-provider";
 import { TransitionLink } from "../global/TransitionLink.component";
 import { useRouter } from "next/navigation";
+import logo from "@/public/assets/images/header-logo/logo.png"
+import Image from "next/image";
 const menuItems = [
   { text: "خانه", link: "/" },
   { text: "رویداد ها", link: "/events" },
   { text: "درباره ما", link: "/about" },
-  { text: "کامیونیتی ", link: "/community" },
-  { text: "علاقه مندی ها", classes: "text-error-light", link: "/favorits" },
+  { text: "تماس با ما", link: "/favorits" },
 ];
 type Props = {};
 
@@ -45,11 +46,11 @@ const HeaderMenu = (props: Props) => {
       hamburgerMenuItem:
         "bg-light  block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ",
       mainMenuWrapper:
-        "h-full flex flex-col md:flex-row gap-10 md:gap-14 top-0 right-0 max-md:absolute max-md:bg-primary-light max-md:w-full max-md:flex-col p-6 transition-[right] duration-300 z-[110]",
+        "h-full flex flex-col md:flex-row gap-10 md:gap-14 top-0 right-0 max-md:absolute max-md:bg-primary-light max-md:w-full max-md:flex-col p-4 transition-[right] duration-300 z-[110]",
       menuItem:
-        "text-lg sm:text-base lg:text-lg transition-[border] duration-500 hover:border-b-2-[red]",
+        "text-lg my-auto sm:text-base lg:text-lg transition-[border] duration-500 hover:border-b-2-[red]",
       userAccountButton:
-        "transition duration-200 rounded-full size-12 max-md:size-10 flex justify-center items-center relative  hover:shadow-button bg-primary hover:bg-primary-light",
+        "transition duration-200 rounded-full size-12 max-md:size-10 flex justify-center items-center relative  hover:shadow-button bg-transparent border-2 border-primary hover:bg-primary-light",
       userAccountTab:
         "transition-[background] duration-200 w-fit absolute top-full left-0 rounded-xl p-4 mt-3 flex flex-col items-start gap-2 transition duration-200",
       accountTabItem: "flex gap-3 whitespace-pre items-center max-md:text-sm",
@@ -86,7 +87,7 @@ const HeaderMenu = (props: Props) => {
           openMobileMenu ? "right-0 " : "right-[-100%]"
         } `}
       >
-        {menuItems.map((item, index) => (
+        {/* {menuItems.map((item, index) => (
           <TransitionLink
             href={item.link}
             key={index}
@@ -94,7 +95,23 @@ const HeaderMenu = (props: Props) => {
           >
             {item.text}
           </TransitionLink>
-        ))}
+        ))} */}
+
+        <TransitionLink href="/" className={`${styles.menuItem()}`}>
+          خانه
+        </TransitionLink>
+        <TransitionLink href="/events" className={`${styles.menuItem()}`}>
+          رویداد ها
+        </TransitionLink>
+        <TransitionLink href="/" className={`${styles.menuItem()}`}>
+          <Image src={logo} alt="logo" className="w-[90px] h-[87.98px]" />
+        </TransitionLink>
+        <TransitionLink href="/about" className={`${styles.menuItem()}`}>
+          درباره ما
+        </TransitionLink>
+        <TransitionLink href="/favorites" className={`${styles.menuItem()}`}>
+          تماس با ما
+        </TransitionLink>
       </nav>
       {console.log(isLoggedIn)}
       {isLoggedIn ? (
