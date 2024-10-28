@@ -33,7 +33,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${yekanFont.className} h-screen  `}>
+      <body className={`${yekanFont.className} h-screen`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -46,7 +46,7 @@ export default function RootLayout({
           >
             <Providers>
               <Navbar />
-              <div className="flex justify-center ">{children}</div>
+              <div>{children}</div>
             </Providers>
           </main>
           <PageLoading />
