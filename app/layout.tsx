@@ -6,6 +6,7 @@ import { ApolloWrapper } from "@/components/providers/appolo-client-provider";
 import { Providers } from "./providers";
 import PageLoading from "@/components/global/page-loading.component";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -51,6 +52,10 @@ export default function RootLayout({
           </main>
           <PageLoading />
         </ThemeProvider>
+
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </html>
   );
