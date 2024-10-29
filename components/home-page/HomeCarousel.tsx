@@ -6,7 +6,6 @@ import eventPic from "../../public/assets/images/events/event-1.png";
 
 function HomeCarousel() {
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3.4,
@@ -15,7 +14,7 @@ function HomeCarousel() {
   };
   return (
     <div className="w-3/4 m-auto">
-      <div className="mt-20">
+      <div>
         <Slider {...settings}>
           {data.map((d) => (
             <div
