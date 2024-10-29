@@ -8,8 +8,10 @@ import { tv } from "tailwind-variants";
 import { GeneralDataContext } from "../providers/general-data-provider";
 import { TransitionLink } from "../global/TransitionLink.component";
 import { useRouter } from "next/navigation";
-import logo from "@/public/assets/images/header-logo/logo.png"
+import logo from "@/public/assets/images/header-logo/logo.png";
 import Image from "next/image";
+import HeaderSearch from "@/components/home-page/HeaderSearch";
+
 const menuItems = [
   { text: "خانه", link: "/" },
   { text: "رویداد ها", link: "/events" },
@@ -42,7 +44,7 @@ const HeaderMenu = (props: Props) => {
   const headerMenu = tv({
     slots: {
       hamburgerMenuButton:
-        "flex flex-col justify-center items-center md:hidden z-[111]",
+        "flex flex-col justify-center items-center md:hidden gap-1 z-[111]",
       hamburgerMenuItem:
         "bg-light  block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ",
       mainMenuWrapper:
@@ -68,7 +70,7 @@ const HeaderMenu = (props: Props) => {
       <button onClick={handleClick} className={styles.hamburgerMenuButton()}>
         <span
           className={`${styles.hamburgerMenuItem()} ${
-            openMobileMenu ? "rotate-45 translate-y-1" : "-translate-y-0.5"
+            openMobileMenu ? "rotate-45 translate-y-2" : "-translate-y-0.5"
           }`}
         ></span>
         <span
@@ -78,7 +80,7 @@ const HeaderMenu = (props: Props) => {
         ></span>
         <span
           className={`${styles.hamburgerMenuItem()} ${
-            openMobileMenu ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
+            openMobileMenu ? "-rotate-45 -translate-y-2" : "translate-y-0.5"
           }`}
         ></span>
       </button>
@@ -115,32 +117,35 @@ const HeaderMenu = (props: Props) => {
       </nav>
       {console.log(isLoggedIn)}
       {isLoggedIn ? (
-        <button
-          className={` ${
-            openMobileMenu ? "bg-primary" : "bg-primary-light"
-          } ${styles.userAccountButton()}`}
-          onClick={handleToggleAccountTab}
-          // onBlur={handleCloseAccountTab}
-        >
-          <User className={styles.userIcon()} />
-          <div
-            className={`${styles.userAccountTab()} ${
-              openUserAccountTab
-                ? "opacity-100 scale-100 "
-                : "opacity-0 scale-50 "
-            } ${openMobileMenu ? "bg-primary" : "bg-primary-light"}`}
-            onClick={handleOpenAccountTab}
+        <>
+          <HeaderSearch />
+          <button
+            className={` ${
+              openMobileMenu ? "bg-primary" : "bg-primary-light"
+            } ${styles.userAccountButton()}`}
+            onClick={handleToggleAccountTab}
+            // onBlur={handleCloseAccountTab}
           >
-            <Link href="profile" className={styles.accountTabItem()}>
-              <User className={styles.accountTabItemIcon()} />
-              حساب کاربری
-            </Link>
-            <div onClick={deleteToken} className={styles.accountTabItem()}>
-              <LogOut className={styles.accountTabItemIcon()} />
-              خروج
+            <User className={styles.userIcon()} />
+            <div
+              className={`${styles.userAccountTab()} ${
+                openUserAccountTab
+                  ? "opacity-100 scale-100 "
+                  : "opacity-0 scale-50 "
+              } ${openMobileMenu ? "bg-primary" : "bg-primary-light"}`}
+              onClick={handleOpenAccountTab}
+            >
+              <Link href="profile" className={styles.accountTabItem()}>
+                <User className={styles.accountTabItemIcon()} />
+                حساب کاربری
+              </Link>
+              <div onClick={deleteToken} className={styles.accountTabItem()}>
+                <LogOut className={styles.accountTabItemIcon()} />
+                خروج
+              </div>
             </div>
-          </div>
-        </button>
+          </button>
+        </>
       ) : (
         <Link className={styles.registerLoginButton()} href="/login">
           ورود / ثبت‌نام
