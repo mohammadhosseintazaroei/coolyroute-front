@@ -33,47 +33,52 @@ export default function Home() {
   };
   return (
     <div>
-      <div className="lg:flex lg:flex-row lg:justify-between">
-        <div className="flex flex-col items-center lg:mt-20 mb-10 md:mb-10 lg:gap-[50px] gap-[25px] w-1/2 mx-auto">
-          <Image src={business} alt="business" className="block lg:hidden" />
-          <div className="lg:text-[100px] text-[48px]">کولی کد</div>
-          <div className="lg:text-[45px] text-[24px] font-light">
-            مرجع ایونت های تخصصی
-          </div>
-          <CrAutocomplete
-            className="lg:text-[406px] text-[268px]"
-            label="حوزه کاری"
-            isLoading={getSKillsLoading}
-            variant="flat"
-            placeholder="حوزه کاری خود را انتخاب کنید"
-            color="primary"
-            defaultItems={data?.getSkillsBrief}
-            allowsCustomValue={true}
-            onSelectionChange={onSelectionChange}
-            required
-            isRequired
-            inputProps={{
-              required: true,
-            }}
-          >
-            {data?.getSkillsBrief.map((item) => (
-              <CrAutocompleteItem
-                key={`${item.id}`}
-                value={`${item.id}`}
-                color="primary"
-              >
-                {item.name}
-              </CrAutocompleteItem>
-            ))}
-          </CrAutocomplete>
-        </div>
-        <Image src={business} alt="business" className="lg:block hidden" />
-      </div>
       <div>
-        <div className="text-center lg:text-[36px] text-[20px] animate-bounce animate-infinite">
-          مشاهده آخرین ایونت ها
+        <div className="lg:flex lg:flex-row lg:justify-between">
+          <div className="flex flex-col items-center lg:mt-20 mb-10 md:mb-10 lg:gap-[50px] gap-[25px] w-1/2 mx-auto">
+            <Image src={business} alt="business" className="block lg:hidden" />
+            <div className="lg:text-[100px] text-[48px] text-nowrap">
+              کولی کد
+            </div>
+            <div className="lg:text-[45px] text-[24px] font-light text-nowrap">
+              مرجع ایونت های تخصصی
+            </div>
+            <CrAutocomplete
+              className="lg:text-[406px] text-[268px]"
+              label="حوزه کاری"
+              isLoading={getSKillsLoading}
+              variant="flat"
+              placeholder="حوزه کاری خود را انتخاب کنید"
+              color="primary"
+              defaultItems={data?.getSkillsBrief}
+              allowsCustomValue={true}
+              onSelectionChange={onSelectionChange}
+              required
+              isRequired
+              inputProps={{
+                required: true,
+              }}
+            >
+              {data?.getSkillsBrief.map((item) => (
+                <CrAutocompleteItem
+                  key={`${item.id}`}
+                  value={`${item.id}`}
+                  color="primary"
+                >
+                  {item.name}
+                </CrAutocompleteItem>
+              ))}
+            </CrAutocomplete>
+          </div>
+          <Image src={business} alt="business" className="lg:block hidden" />
         </div>
-        <Image src={down} alt="down" className="mx-auto my-3" />
+
+        <div>
+          <div className="text-center lg:text-[36px] text-[20px] animate-bounce animate-infinite">
+            مشاهده آخرین ایونت ها
+          </div>
+          <Image src={down} alt="down" className="mx-auto my-3" />
+        </div>
       </div>
       <div className="mt-10">
         <div className="mx-auto text-[24px] border-b-4 border-white w-fit p-2">
