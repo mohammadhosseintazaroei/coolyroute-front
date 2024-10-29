@@ -9,7 +9,7 @@ function HomeCarousel() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3.5,
+    slidesToShow: 3.4,
     slidesToScroll: 1,
     rtl: true,
   };
@@ -18,7 +18,8 @@ function HomeCarousel() {
       <div className="mt-20">
         <Slider {...settings}>
           {data.map((d) => (
-            <div dir="rtl"
+            <div
+              dir="rtl"
               key={d.title}
               className="bg-primary-light rounded-xl"
             >
@@ -31,11 +32,15 @@ function HomeCarousel() {
                 <p className="text-sm text-neutral-light">{d.review}</p>
                 <div className="flex flex-row justify-between">
                   <div className="text-sm text-neutral-light">تاریخ:</div>
-                  <div className="text-sm font-bold text-[#929292]">{d.date}</div>
+                  <div className="text-sm font-bold text-[#929292]">
+                    {d.date}
+                  </div>
                 </div>
                 <div className="flex flex-row justify-between">
                   <div className="text-sm text-neutral-light">مکان:</div>
-                  <div className="text-sm font-bold text-[#929292]">{d.location}</div>
+                  <div className="text-sm font-bold text-[#929292]">
+                    {d.location}
+                  </div>
                 </div>
                 <button className="bg-success text-white text-lg px-6 py-1 rounded-lg w-full">
                   ثبت نام
