@@ -125,3 +125,13 @@
 .slick-dots li.slick-active button:before {
   color: white !important;
 }
+
+.bg-festival {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(202, 58, 121, 1), rgba(61, 21, 153, 1)),
+    url("../public/assets/images/home-page/festival.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 90%;
+}
