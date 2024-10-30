@@ -12,7 +12,7 @@ import up from "@/public/assets/images/footer-section/up.png";
 
 const Footer = () => {
   return (
-    <div className="bg-primary-light py-6 mt-12">
+    <div className="bg-primary-light py-6">
       <div className="flex flex-row justify-between lg:justify-start items-center gap-8 mx-44">
         <div className="flex flex-col lg:flex-row items-center gap-4 leading-7">
           <Image src={Group} alt="" />
