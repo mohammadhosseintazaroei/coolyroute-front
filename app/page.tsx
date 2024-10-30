@@ -73,17 +73,22 @@ export default function Home() {
 
         <div className="animate-bounce animate-infinite">
           <div className="text-center lg:text-[36px] text-[20px]">
-            مشاهده آخرین ایونت ها
+            <a href="#latest-events">مشاهده آخرین ایونت ها</a>
           </div>
           <Image src={down} alt="down" className="mx-auto my-3" />
         </div>
       </div>
       <WhyCooly />
       <div>
-        <div className="mx-auto text-[24px] border-b-4 border-white w-fit p-2 my-12">
+        <div
+          id="latest-events"
+          className="mx-auto text-[24px] border-b-4 border-white w-fit p-2 my-12"
+        >
           آخرین ایونت ها
         </div>
-        <HomeCarousel />
+        <div className="mx-12 pb-28">
+          <HomeCarousel />
+        </div>
       </div>
     </div>
   );
