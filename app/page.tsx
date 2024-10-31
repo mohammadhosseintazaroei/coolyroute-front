@@ -10,27 +10,39 @@ import ComboBox from "@/components/home-page/ComboBox";
 export default function Home() {
   return (
     <div>
-      <div>
-        <div className="lg:flex lg:flex-row lg:justify-between">
-          <div className="flex flex-col items-center lg:mt-20 mb-10 md:mb-10 gap-[10px] w-1/2 mx-auto">
-            <Image src={business} alt="business" className="block lg:hidden" />
-            <div className="lg:text-[100px] text-[48px] text-nowrap">
+      <div id="banner">
+        <div className="lg:flex lg:flex-row lg:justify-between pt-32">
+          <div className="flex flex-col items-center lg:mt-20 mb-10 md:mb-10 gap-[10px] mx-auto z-50">
+            <Image
+              src={business}
+              alt="business"
+              className="block lg:hidden z-50"
+            />
+            <div className="lg:text-[100px] text-[48px] text-nowrap z-50">
               کولی کد
             </div>
-            <div className="lg:text-[45px] text-[24px] font-light text-nowrap">
+            <div className="lg:text-[45px] text-[24px] font-light text-nowrap z-50">
               مرجع ایونت های تخصصی
             </div>
             <ComboBox />
           </div>
-          <Image src={business} alt="business" className="lg:block hidden" />
+          <div className="w-1/2">
+            <Image
+              src={business}
+              alt="business"
+              className="lg:block hidden z-50 w-[674px] h-[504px]"
+            />
+          </div>
         </div>
 
-        <div className="animate-bounce animate-infinite">
-          <div className="text-center text-[20px]">
-            <a href="#latest-events">مشاهده آخرین ایونت ها</a>
+        <a href="#latest-events">
+          <div className="animate-bounce animate-infinite">
+            <div className="text-center lg:text-[32px] text-[20px]">
+              <div>مشاهده آخرین ایونت ها</div>
+            </div>
+            <Image src={down} alt="down" className="mx-auto my-3" />
           </div>
-          <Image src={down} alt="down" className="mx-auto my-3" />
-        </div>
+        </a>
       </div>
       <WhyCooly />
       <div>
