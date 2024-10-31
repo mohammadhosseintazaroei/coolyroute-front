@@ -1,17 +1,33 @@
 "use client";
 
+import * as React from "react";
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
-  CrAutocomplete,
-  CrAutocompleteItem,
-} from "@/components/global/cr-fields/cr-autocomplete.component";
-import { GET_SKILLS_BRIEF } from "@/apis/skills.api";
-import { useQuery } from "@apollo/client";
-import { Key, useState } from "react";
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { CompleteFurtherInformationDto } from "@/__generated__/graphql";
+import { useQuery } from "@apollo/client";
+import { GET_SKILLS_BRIEF } from "@/apis/skills.api";
 
 export default function ComboBox() {
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
+
   const [formData, setFormData] =
-    useState<CompleteFurtherInformationDto | null>(null);
+    React.useState<CompleteFurtherInformationDto | null>(null);
   const { data, loading: getSKillsLoading } = useQuery(GET_SKILLS_BRIEF, {
     fetchPolicy: "network-only",
     onCompleted: (data) => {
@@ -21,35 +37,58 @@ export default function ComboBox() {
       console.log(err);
     },
   });
-  const onSelectionChange = (key: Key | null) => {
+  const onSelectionChange = (key: React.Key | null) => {
     setFormData({ ...formData, skillId: Number(key) });
   };
   return (
-    <CrAutocomplete
-      className="lg:text-[406px] text-[268px] lg:w-[406px] w-[268px] mt-10"
-      label="حوزه کاری"
-      isLoading={getSKillsLoading}
-      variant="flat"
-      placeholder="حوزه کاری خود را انتخاب کنید"
-      color="primary"
-      defaultItems={data?.getSkillsBrief}
-      allowsCustomValue={true}
-      onSelectionChange={onSelectionChange}
-      required
-      isRequired
-      inputProps={{
-        required: true,
-      }}
-    >
-      {data?.getSkillsBrief.map((item) => (
-        <CrAutocompleteItem
-          key={`${item.id}`}
-          value={`${item.id}`}
-          color="primary"
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className="lg:w-[406px] h-14 w-[268px] justify-between bg-primary-lighter text-white rounded-xl mt-10"
         >
-          {item.name}
-        </CrAutocompleteItem>
-      ))}
-    </CrAutocomplete>
+          <div className="flex flex-col items-start">
+            <div className="text-[16px]">حوزه کاری</div>
+            <div className="text-[12px] text-neutral-light">
+              {value
+                ? data?.getSkillsBrief.find((skill) => skill.name === value)
+                    ?.name
+                : "حوزه کاری خود را انتخاب کنید"}
+            </div>
+          </div>
+          <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="lg:w-[406px] w-[268px] p-0">
+        <Command>
+          <CommandInput placeholder="جستجوی حوزه کاری..." className="h-9" />
+          <CommandList>
+            <CommandEmpty>حوزه کاری یافت نشد!</CommandEmpty>
+            <CommandGroup>
+              {data?.getSkillsBrief.map((skill) => (
+                <CommandItem
+                  key={skill.id}
+                  value={skill.name}
+                  onSelect={(currentValue) => {
+                    setValue(currentValue === value ? "" : currentValue);
+                    setOpen(false);
+                  }}
+                >
+                  {skill.name}
+                  <CheckIcon
+                    className={cn(
+                      "ml-auto h-4 w-4",
+                      value === skill.name ? "opacity-100" : "opacity-0"
+                    )}
+                  />
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
   );
 }
