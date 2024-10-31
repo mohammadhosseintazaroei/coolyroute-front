@@ -5,7 +5,7 @@ import referral from "@/public/assets/images/home-page/referral.png";
 
 const WhyCooly = () => {
   return (
-    <div className="mt-10">
+    <div className="mt-2">
       <div className="mx-auto text-[24px] border-b-4 border-white w-fit p-2">
         چرا کولی کد
       </div>
