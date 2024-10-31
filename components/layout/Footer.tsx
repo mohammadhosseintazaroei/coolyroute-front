@@ -102,12 +102,12 @@ const Footer = () => {
         </div>
       </div>
       <div className="hidden lg:flex flex-row items-center justify-center gap-4">
-        <div className="bg-[#0C0C26] w-[128px] h-[40px] flex flex-row justify-center items-center gap-2 rounded-md cursor-pointer">
+        <a href="#" className="bg-[#0C0C26] w-[128px] h-[40px] flex flex-row justify-center items-center gap-2 rounded-md cursor-pointer">
           <div>
             <Image src={up} alt="" />
           </div>
           <div className="text-[12px] text-[#A9A6CF]">بازگشت به بالا</div>
-        </div>
+        </a>
         <div className="w-10/12 h-[40px] bg-[#0C0C26] rounded-md text-[12px] text-[#A9A6CF] flex flex-row gap-4 items-center">
           <div className="mx-auto"> تمامی حقوق محفوظ میباشد. | کولی کد©</div>
           <div>قوانین و مقررات</div>
