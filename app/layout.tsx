@@ -43,11 +43,11 @@ export default function RootLayout({
         >
           <main
             id="main"
-            className="bg-background text-foreground transition-all duration-200 ease-in-out "
+            className="bg-background text-foreground transition-all duration-200 ease-in-out"
           >
             <Providers>
               <Navbar />
-              <div className="container mx-auto">{children}</div>
+              <div className="mx-auto">{children}</div>
             </Providers>
           </main>
           <PageLoading />
