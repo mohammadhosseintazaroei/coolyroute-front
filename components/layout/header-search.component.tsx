@@ -16,7 +16,7 @@ const HeaderSearch = () => {
   return (
     <>
       <div
-        className="relative h-full flex justify-start items-center w-10 sm:w-14 max-md:hidden"
+        className="relative h-full flex justify-start items-center w-10 sm:w-14 max-md:hidden z-50"
         onClick={handleOpenModal}
       >
         <input
@@ -28,7 +28,7 @@ const HeaderSearch = () => {
 
         <label
           htmlFor="search"
-          className="absolute top-[50%]  left-[50%] translate-x-[-50%] translate-y-[-50%] cursor-pointer"
+          className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] cursor-pointer"
         >
           <Search className="size-6 " />
         </label>
