@@ -6,7 +6,7 @@ interface Props {}
 const Navbar = (props: Props) => {
   return (
     <>
-      <nav className="container py-6 px-4 flex justify-between items-center mx-auto">
+      <nav className="fixed container top-0 left-0 right-0 py-6 px-4 flex justify-between items-center mx-auto z-50">
         <HeaderSearch />
         <HeaderMenu />
       </nav>
