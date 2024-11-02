@@ -1,16 +1,19 @@
-"use client";
-
 import Image from "next/image";
-import business from "@/public/assets/images/home-page/business.png";
-import down from "@/public/assets/images/home-page/down.png";
+import business from "@/public/assets/images/home-page/business.svg";
+import down from "@/public/assets/images/home-page/down.svg";
 import HomeCarousel from "@/components/home-page/HomeCarousel";
 import WhyCooly from "@/components/home-page/WhyCooly";
 import ComboBox from "@/components/home-page/ComboBox";
 
-export default function Home() {
+const Home = () => {
   return (
     <div>
-      <div id="banner">
+      <div
+        className="w-full bg-cover bg-center opacity-90"
+        style={{
+          backgroundImage: `linear-gradient(120deg, rgba(202, 58, 121, 0.9), rgba(61, 21, 153, 0.9) 25%), url('/assets/images/home-page/festival.svg')`,
+        }}
+      >
         <div className="lg:flex lg:flex-row lg:justify-between pt-32">
           <div className="flex flex-col items-center lg:mt-20 mb-10 md:mb-10 gap-[10px] mx-auto z-50">
             <Image
@@ -52,10 +55,12 @@ export default function Home() {
         >
           آخرین ایونت ها
         </div>
-        <div className="mx-12 lg:pb-28 pb-10">
+        <div className="md:mx-12 lg:pb-28 pb-10">
           <HomeCarousel />
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Home;

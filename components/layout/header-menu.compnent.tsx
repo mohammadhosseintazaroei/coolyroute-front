@@ -8,19 +8,11 @@ import { tv } from "tailwind-variants";
 import { GeneralDataContext } from "../providers/general-data-provider";
 import { TransitionLink } from "../global/TransitionLink.component";
 import { useRouter } from "next/navigation";
-import logo from "@/public/assets/images/header-logo/logo.png";
+import logo from "@/public/assets/images/header-logo/logo.svg";
 import Image from "next/image";
 import HeaderSearch from "@/components/home-page/HeaderSearch";
 
-const menuItems = [
-  { text: "خانه", link: "/" },
-  { text: "رویداد ها", link: "/events" },
-  { text: "درباره ما", link: "/about" },
-  { text: "تماس با ما", link: "/favorits" },
-];
-type Props = {};
-
-const HeaderMenu = (props: Props) => {
+const HeaderMenu = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [openUserAccountTab, setOpenUserAccountTab] = useState(false);
   const { deleteToken, isLoggedIn } = useContext(GeneralDataContext);
@@ -89,15 +81,6 @@ const HeaderMenu = (props: Props) => {
           openMobileMenu ? "right-0 " : "right-[-100%]"
         } `}
       >
-        {/* {menuItems.map((item, index) => (
-          <TransitionLink
-            href={item.link}
-            key={index}
-            className={`${styles.menuItem()} ${item.classes}`}
-          >
-            {item.text}
-          </TransitionLink>
-        ))} */}
 
         <TransitionLink href="/" className={`${styles.menuItem()}`}>
           خانه

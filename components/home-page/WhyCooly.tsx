@@ -1,7 +1,7 @@
 import Image from "next/image";
-import think from "@/public/assets/images/home-page/think.png";
-import mountain from "@/public/assets/images/home-page/mountain.png";
-import referral from "@/public/assets/images/home-page/referral.png";
+import think from "@/public/assets/images/home-page/think.svg";
+import mountain from "@/public/assets/images/home-page/mountain.svg";
+import referral from "@/public/assets/images/home-page/referral.svg";
 
 const WhyCooly = () => {
   return (

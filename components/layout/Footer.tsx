@@ -1,28 +1,28 @@
 import Image from "next/image";
-import Group from "@/public/assets/images/footer-section/Group.png";
-import Car from "@/public/assets/images/footer-section/Car.png";
-import logo from "@/public/assets/images/header-logo/logo.png";
+import group from "@/public/assets/images/footer-section/group.svg";
+import car from "@/public/assets/images/footer-section/car.svg";
+import logo from "@/public/assets/images/header-logo/logo.svg";
 import Link from "next/link";
-import telegram from "@/public/assets/images/footer-section/telegram.png";
-import instagram from "@/public/assets/images/footer-section/instagram.png";
-import youtube from "@/public/assets/images/footer-section/youtube.png";
-import namad from "@/public/assets/images/footer-section/namad.png";
-import meli from "@/public/assets/images/footer-section/meli.png";
-import up from "@/public/assets/images/footer-section/up.png";
+import telegram from "@/public/assets/images/footer-section/telegram.svg";
+import instagram from "@/public/assets/images/footer-section/instagram.svg";
+import youtube from "@/public/assets/images/footer-section/youtube.svg";
+import namad from "@/public/assets/images/footer-section/namad.svg";
+import meli from "@/public/assets/images/footer-section/meli.svg";
+import up from "@/public/assets/images/footer-section/up.svg";
 
 const Footer = () => {
   return (
     <div className="bg-primary-light py-4">
       <div className="flex flex-row justify-between lg:justify-start items-center gap-8 lg:mx-44 mx-20">
         <div className="flex flex-col lg:flex-row items-center gap-4 leading-7">
-          <Image src={Group} alt="" />
+          <Image src={group} alt="" />
           <div>
             <div className="text-foreground text-[16px]">شبکه سازی</div>
             <div className="text-[#A9A6CF] text-[12px]">ارتباط با افراد</div>
           </div>
         </div>
         <div className="flex flex-col lg:flex-row items-center gap-4 leading-7">
-          <Image src={Car} alt="" />
+          <Image src={car} alt="" />
           <div>
             <div className="text-foreground text-[16px]">سفر و تفریح</div>
             <div className="text-[#A9A6CF] text-[12px]">سفر و اوقات فراقت</div>
@@ -32,7 +32,7 @@ const Footer = () => {
       <div className="lg:mr-52 mx-4">
         <Image
           src={logo}
-          alt=""
+          alt="CoolyCode"
           className="w-[66px] h-[67px] my-8 -rotate-[120deg] mx-auto lg:mx-0"
         />
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center lg:gap-12">
@@ -49,14 +49,17 @@ const Footer = () => {
               <div className="lg:my-6 my-3 text-[#6B688D] text-[14px] font-bold">
                 ما را در شبکه های اجتماعی دنبال کنید:
               </div>
-              <div className="flex flex-row items-center gap-4 mb-6">
-                <Link href="https://t.me/coolycode">
+              <div className="flex flex-row items-center gap-4 mb-6 text-[#6B688D]">
+                <Link href="https://t.me/coolycode" target="_blank">
                   <Image src={telegram} alt="telegram" />
                 </Link>
-                <Link href="https://www.instagram.com/coolycode">
+                <Link
+                  href="https://www.instagram.com/coolycode"
+                  target="_blank"
+                >
                   <Image src={instagram} alt="instagram" />
                 </Link>
-                <Link href="https://www.youtube.com/@coolycode">
+                <Link href="https://www.youtube.com/@coolycode" target="_blank">
                   <Image src={youtube} alt="youtube" />
                 </Link>
               </div>
@@ -83,7 +86,7 @@ const Footer = () => {
               <div className="text-[16px] text-[#A9A6CF]">
                 راهنمایی و پشتیبان
               </div>
-              <li className="text-[#F5B414]">
+              <li>
                 <span className="text-white">پشتیبانی</span>
               </li>
               <li>
@@ -102,7 +105,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="hidden lg:flex flex-row items-center justify-center gap-4">
-        <a href="#" className="bg-[#0C0C26] w-[128px] h-[40px] flex flex-row justify-center items-center gap-2 rounded-md cursor-pointer">
+        <a
+          href="#"
+          className="bg-[#0C0C26] w-[128px] h-[40px] flex flex-row justify-center items-center gap-2 rounded-md cursor-pointer"
+        >
           <div>
             <Image src={up} alt="" />
           </div>
@@ -119,7 +125,9 @@ const Footer = () => {
           <div>شرایط استفاده از خدمات</div>
           <div>قوانین و مقررات</div>
         </div>
-        <div className="opacity-[80%] text-center mt-8">تمامی حقوق محفوظ میباشد. | کولی کد©</div>
+        <div className="opacity-[80%] text-center mt-8">
+          تمامی حقوق محفوظ میباشد. | کولی کد©
+        </div>
       </div>
     </div>
   );
