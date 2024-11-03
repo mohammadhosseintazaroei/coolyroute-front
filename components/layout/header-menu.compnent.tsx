@@ -81,7 +81,6 @@ const HeaderMenu = () => {
           openMobileMenu ? "right-0 " : "right-[-100%]"
         } `}
       >
-
         <TransitionLink href="/" className={`${styles.menuItem()}`}>
           خانه
         </TransitionLink>
@@ -102,6 +101,7 @@ const HeaderMenu = () => {
         </TransitionLink>
       </nav>
       {console.log(isLoggedIn)}
+
       {isLoggedIn ? (
         <>
           <HeaderSearch />
