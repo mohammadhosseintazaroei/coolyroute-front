@@ -5,24 +5,25 @@ import referral from "@/public/assets/images/home-page/referral.svg";
 
 const WhyCooly = () => {
   return (
-    <div className="mt-2">
-      <div className="mx-auto text-[24px] border-b-4 border-white w-fit p-2">
-        چرا کولی کد
+    <div className="lg:mt-12 mt-6">
+      <div className="mx-auto text-[24px] w-fit p-2">
+        <div className="text-foreground">چرا کولی کد</div>
+        <div className="border-2 border-white w-[118px] rounded-full mt-1"></div>
       </div>
 
       <div className="flex flex-col lg:flex-row items-center justify-center">
-        <div className="flex flex-col items-center max-w-[686px] gap-[25px] mx-6 lg:mt-28 mt-10">
+        <div className="flex flex-col items-center max-w-[686px] gap-[25px] mx-6 lg:mt-26 mt-6">
           <Image
             src={think}
             alt="think"
             className="max-w-[185.19px] max-h-[250px] lg:hidden block"
           />
 
-          <div className="text-2xl font-normal">
+          <div className="text-2xl font-normal text-foreground">
             تا حالا شده بخوای بری کوه، کمپ، طبیعت گردی ،ولی کسی رو نداشته باشی
             که باهات بیاد ؟
           </div>
-          <div className="text-neutral-lighter text-lg font-light">
+          <div className="text-neutral-lighter text-lg font-light text-foreground">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
             استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
             ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
@@ -47,8 +48,10 @@ const WhyCooly = () => {
           className="lg:max-w-[475px] lg:max-h-[342px] max-w-[210px] max-h-[151px]"
         />
         <div className="flex flex-col max-w-[686px] gap-[25px] m-4">
-          <div className="text-2xl font-normal">سفر و تفریح</div>
-          <div className="text-neutral-lighter text-lg font-light">
+          <div className="text-2xl font-normal text-foreground">
+            سفر و تفریح
+          </div>
+          <div className="text-neutral-lighter text-lg font-light text-foreground">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
             استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
             ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
@@ -68,8 +71,10 @@ const WhyCooly = () => {
             alt="referral"
             className="max-w-[233px] max-h-[264px] lg:hidden block lg:mx-0 mx-auto"
           />
-          <div className="text-2xl font-normal">شبکه سازی و ارتباطات موثر</div>
-          <div className="text-neutral-lighter text-lg font-light">
+          <div className="text-2xl font-normal text-foreground">
+            شبکه سازی و ارتباطات موثر
+          </div>
+          <div className="text-neutral-lighter text-lg font-light text-foreground">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
             استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
             ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز،
