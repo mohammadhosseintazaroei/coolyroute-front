@@ -4,36 +4,38 @@ import down from "@/public/assets/images/home-page/down.svg";
 import HomeCarousel from "@/components/home-page/HomeCarousel";
 import WhyCooly from "@/components/home-page/WhyCooly";
 import ComboBox from "@/components/home-page/ComboBox";
+import codePc from "@/public/assets/images/home-page/codePc.svg";
+import codePhone from "@/public/assets/images/home-page/codePhone.svg";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <div
         className="w-full bg-cover bg-center opacity-90"
         style={{
           backgroundImage: `linear-gradient(120deg, rgba(202, 58, 121, 0.9), rgba(61, 21, 153, 0.9) 25%), url('/assets/images/home-page/festival.svg')`,
         }}
       >
-        <div className="lg:flex lg:flex-row lg:justify-between pt-32">
-          <div className="flex flex-col items-center lg:mt-20 mb-10 md:mb-10 gap-[10px] mx-auto z-50">
+        <div className="container mx-auto lg:flex lg:flex-row lg:justify-around items-center pt-32">
+          <div className="flex flex-col items-center justify-between mb-10 gap-[10px] mx-auto z-50">
             <Image
               src={business}
               alt="business"
               className="block lg:hidden z-50"
             />
-            <div className="lg:text-[100px] text-[48px] text-nowrap z-50">
-              کولی کد
-            </div>
-            <div className="lg:text-[45px] text-[24px] font-light text-nowrap z-50">
+            <Image className="hidden lg:block" src={codePc} alt="" />
+            <Image className="lg:hidden block" src={codePhone} alt="" />
+            <h1 className="hidden">کولی کد، مرجع ایونت های تخصصی</h1>
+            <div className="lg:text-[45px] text-[24px] font-light text-nowrap z-50 text-foreground">
               مرجع ایونت های تخصصی
             </div>
             <ComboBox />
           </div>
-          <div className="w-1/2">
+          <div>
             <Image
               src={business}
               alt="business"
-              className="lg:block hidden z-50 w-[674px] h-[504px]"
+              className="lg:block hidden z-50 lg:w-[674px] lg:h-[504px] w-[268px] h-[232px]"
             />
           </div>
         </div>
@@ -47,19 +49,22 @@ const Home = () => {
           </div>
         </a>
       </div>
-      <WhyCooly />
-      <div>
-        <div
-          id="latest-events"
-          className="mx-auto text-[24px] border-b-4 border-white w-fit p-2 my-12"
-        >
-          آخرین ایونت ها
-        </div>
-        <div className="md:mx-12 lg:pb-28 pb-10">
-          <HomeCarousel />
+      <div className="container mx-auto">
+        <WhyCooly />
+        <div>
+          <div
+            id="latest-events"
+            className="mx-auto text-[24px] w-fit p-2 mt-12 lg:mb-8 mb-2"
+          >
+            <div className="text-foreground">آخرین ایونت ها</div>
+            <div className="border-2 border-white w-[155px] rounded-full mt-1"></div>
+          </div>
+          <div className="md:mx-12 mr-5">
+            <HomeCarousel />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
