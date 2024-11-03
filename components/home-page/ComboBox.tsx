@@ -47,7 +47,7 @@ export default function ComboBox() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="lg:w-[406px] h-14 w-[268px] justify-between bg-primary-lighter text-white rounded-xl mt-10"
+          className="lg:w-[406px] h-14 w-[268px] justify-between bg-primary-lighter text-foreground rounded-xl lg:mt-10 mt-2"
         >
           <div className="flex flex-col items-start">
             <div className="text-[16px]">حوزه کاری</div>
