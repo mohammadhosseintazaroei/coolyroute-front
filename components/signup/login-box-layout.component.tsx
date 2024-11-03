@@ -6,7 +6,7 @@ import { tv } from "tailwind-variants";
 const loginStyles = tv({
   slots: {
     formWrapper:
-      "flex flex-col rounded-lg bg-card   px-6 pt-8 pb-11 w-[630px] gap-10",
+      "flex flex-col rounded-lg bg-card mx-auto px-6 pt-8 pb-11 w-[630px] gap-10",
     formTitle: "text-2xl font-medium ",
     backButton:
       "bg-primary-lighte rounded-2xl size-12 flex justify-center items-center",
