@@ -6,6 +6,7 @@ query getAllEvents{
     id
     title
     description
+    date
   }
 }
 `);

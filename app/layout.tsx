@@ -6,6 +6,7 @@ import { ApolloWrapper } from "@/components/providers/appolo-client-provider";
 import { Providers } from "./providers";
 import PageLoading from "@/components/global/page-loading.component";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: {
@@ -29,11 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa" dir="rtl" className="bg-background">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${yekanFont.className} h-screen  `}>
+      <body className={`${yekanFont.className} h-screen`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -42,15 +43,19 @@ export default function RootLayout({
         >
           <main
             id="main"
-            className="bg-background text-foreground transition-all duration-200 ease-in-out "
+            className="bg-background text-foreground transition-all duration-200 ease-in-out"
           >
             <Providers>
               <Navbar />
-              <div className="flex justify-center ">{children}</div>
+              <div>{children}</div>
             </Providers>
           </main>
           <PageLoading />
         </ThemeProvider>
+
+        <footer className="bg-primary-light lg:mt-28 mt-10">
+          <Footer />
+        </footer>
       </body>
     </html>
   );
