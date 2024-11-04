@@ -49,19 +49,14 @@ const Home = () => {
           </div>
         </a>
       </div>
-      <div className="container mx-auto">
-        <WhyCooly />
-        <div>
-          <div
-            id="latest-events"
-            className="mx-auto text-[24px] w-fit p-2 mt-12 lg:mb-8 mb-2"
-          >
-            <div className="text-foreground">آخرین ایونت ها</div>
-            <div className="border-2 border-white w-[155px] rounded-full mt-1"></div>
-          </div>
-          <div className="md:mx-12 mr-5">
-            <HomeCarousel />
-          </div>
+      <WhyCooly />
+      <div className=" container mx-auto flex flex-col gap-3 md:gap-8 mt-8 md:mt-12">
+        <div id="latest-events" className="mx-auto text-[24px] w-fit p-2 ">
+          <div className="text-foreground">آخرین ایونت ها</div>
+          <div className="border-2 border-white w-[155px] rounded-full mt-1"></div>
+        </div>
+        <div className="md:mx-12 mr-5 ">
+          <HomeCarousel />
         </div>
       </div>
     </>
